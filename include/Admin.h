@@ -12,8 +12,11 @@ class Admin : public Felhasznalo
         virtual void menuMutat();
         virtual bool parancsFeldolgoz(int parancs, Adatok& adatok);
     private:
+        // USE CASES!
         void felhasznaloFelvetele(FelhasznaloLista& lista);
         void felhasznalokListazasa(FelhasznaloLista& lista);
+        void felhasznaloTorlese(FelhasznaloLista& lista);
+        void felhasznaloModositasa(FelhasznaloLista& lista);
 };
 
 #endif // ADMIN_H

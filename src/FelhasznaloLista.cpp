@@ -68,3 +68,14 @@ void FelhasznaloLista::kiir() const
     }
 }
 
+void FelhasznaloLista::felhasznaloTorlese(const string& felhasznaloNev)
+{
+    for (vector<FelhasznaloAdat>::iterator it = felhasznaloAdatok.begin(); it != felhasznaloAdatok.end(); ++it) {
+        if ((*it).getFelhasznaloNev() == felhasznaloNev) {
+            felhasznaloAdatok.erase(it);
+            break;
+        }
+    }
+    mentes();
+}
+

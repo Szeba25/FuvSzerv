@@ -39,6 +39,7 @@ bool Admin::parancsFeldolgoz(int parancs, Adatok& adatok)
         felhasznalokListazasa(adatok.getFelhasznaloLista());
         break;
     case 6:
+        felhasznaloTorlese(adatok.getFelhasznaloLista());
         break;
     case 7:
         break;
@@ -83,5 +84,25 @@ void Admin::felhasznaloFelvetele(FelhasznaloLista& lista)
 void Admin::felhasznalokListazasa(FelhasznaloLista& lista)
 {
     lista.kiir();
+}
+
+void Admin::felhasznaloTorlese(FelhasznaloLista& lista)
+{
+    string delFelhasznaloNev;
+    cout << "Adjon meg egy felhasznalo nevet: ";
+    cin >> delFelhasznaloNev;
+    if (lista.felhasznaloNevLetezik(delFelhasznaloNev)) {
+        lista.felhasznaloTorlese(delFelhasznaloNev);
+    }
+}
+
+void Admin::felhasznaloModositasa(FelhasznaloLista& lista)
+{
+    string modFelhasznaloNev;
+    cout << "Adjon meg egy felhasznalo nevet: ";
+    cin >> modFelhasznaloNev;
+    if (lista.felhasznaloNevLetezik(modFelhasznaloNev)) {
+
+    }
 }
 
