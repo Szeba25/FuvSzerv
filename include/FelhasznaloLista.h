@@ -21,6 +21,7 @@ class FelhasznaloLista
         FelhasznaloAdat* getFelhasznaloAdatLoginAlapjan(const string& felhasznaloNev, const string& jelszo);
         FelhasznaloAdat* getFelhasznaloAdatFelhasznaloNevAlapjan(const string& felhasznaloNev);
         bool felhasznaloNevLetezik(const string& felhasznaloNev);
+        bool kamionosFelhasznaloNevLetezik(const string& kamionosFelhasznaloNev);
 
         void ujFelhasznalo(const string& felhasznaloNev, const string& jelszo,
                            const string& vezetekNev, const string& keresztNev, int tipus);

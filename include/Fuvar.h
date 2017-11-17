@@ -7,36 +7,66 @@ using namespace std;
 class Fuvar
 {
     public:
-        Fuvar(const string& kamionosFelhasznaloNeve,
+        Fuvar(int id,
+              const string& kamionosFelhasznaloNeve,
               const string& honnan,
-              const string& mit,
-              double mennyit,
-              const string& hova,
+              const string& aruMegnevezes,
+              double mennyiseg,
+              const string& cel,
               const string& mikor,
-              int tavolsag,
+              double tavolsag,
               int prioritas,
               const string& specialisIgenyek,
               const string& megjegyzesek);
         virtual ~Fuvar();
 
+        int getId() const;
         const string& getKamionosFelhasznaloNeve() const;
         const string& getHonnan() const;
-        // TODO
+        const string& getAruMegnevezes() const;
+        double getMennyiseg() const;
+        const string& getCel() const;
+        const string& getMikor() const;
+        double getTavolsag() const;
+        int getPrioritas() const;
+        const string& getSpecialisIgenyek() const;
+        const string& getAllapot() const;
+        const string& getAtvevesIdeje() const;
+        const string& getAtvevoTeljesNeve() const;
+        int getAr() const;
+        const string& getMegjegyzesek() const;
+
+        void setKamionosFelhasznaloNeve(const string& kamionosFelhasznaloNeve);
+        void setHonnan(const string& honnan);
+        void setAruMegnevezes(const string& mit);
+        void setMennyiseg(double mennyiseg);
+        void setCel(const string& cel);
+        void setMikor(const string& mikor);
+        void setTavolsag(double tavolsag);
+        void setPrioritas(int prioritas);
+        void setSpecialisIgenyek(const string& specialisIgenyek);
+        void setAllapot(const string& allapot);
+        void setAtvevesIdeje(const string& atvevesIdeje);
+        void setAtvevoTeljesNeve(const string& atvevoTeljesNeve);
+        void setAr(int ar);
+        void setMegjegyzesek(const string& megjegyzesek);
+
+        void kiir() const;
     private:
         int id;
         string kamionosFelhasznaloNeve;
         string honnan;
-        string mit;
-        double mennyit; // kg-ban!
-        string hova;
+        string aruMegnevezes;
+        double mennyiseg; // kg-ban! > 0
+        string cel;
         string mikor;
-        int tavolsag; // km-ben!
-        int prioritas; // 0-9
+        double tavolsag; // km-ben! > 0
+        int prioritas; // [1-9]
         string specialisIgenyek;
         string allapot;
         string atvevesIdeje;
         string atvevoTeljesNeve;
-        int fuvarAra; // Ft-ban!
+        int ar; // Ft-ban! >= 1
         string megjegyzesek;
 };
 

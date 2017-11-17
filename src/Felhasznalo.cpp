@@ -8,3 +8,8 @@ Felhasznalo::Felhasznalo(const string& felhasznaloNev, const string& vezetekNev,
 }
 
 Felhasznalo::~Felhasznalo() {}
+
+const string& Felhasznalo::getFelhasznaloNev() const
+{
+    return felhasznaloNev;
+}

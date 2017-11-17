@@ -9,7 +9,6 @@ Admin::~Admin()
 
 void Admin::menuMutat()
 {
-    cout << "Bejelentkezve mint: " << felhasznaloNev << endl;
     cout << "> 1 : ceg felvetele" << endl;
     cout << "> 2 : ceg torlese" << endl;
     cout << "> 3 : ceg modositasa" << endl;

@@ -14,6 +14,7 @@ class Felhasznalo
 
         virtual void menuMutat() = 0;
         virtual bool parancsFeldolgoz(int parancs, Adatok& adatok) = 0;
+        const string& getFelhasznaloNev() const;
     protected:
         string felhasznaloNev;
         string vezetekNev;

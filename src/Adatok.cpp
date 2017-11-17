@@ -4,6 +4,7 @@ Adatok::Adatok()
 {
     felhasznaloLista.beolvas();
     cegLista.beolvas();
+    fuvarLista.beolvas();
 }
 
 Adatok::~Adatok()
@@ -19,4 +20,9 @@ FelhasznaloLista& Adatok::getFelhasznaloLista()
 CegLista& Adatok::getCegLista()
 {
     return cegLista;
+}
+
+FuvarLista& Adatok::getFuvarLista()
+{
+    return fuvarLista;
 }

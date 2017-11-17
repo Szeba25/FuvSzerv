@@ -60,6 +60,17 @@ bool FelhasznaloLista::felhasznaloNevLetezik(const string& felhasznaloNev)
     return false;
 }
 
+bool FelhasznaloLista::kamionosFelhasznaloNevLetezik(const string& kamionosFelhasznaloNev)
+{
+    for (FelhasznaloAdat& adat : felhasznaloAdatok) {
+        if (adat.getFelhasznaloNev() == kamionosFelhasznaloNev && adat.getTipus() == 3) {
+            return true;
+        }
+    }
+    return false;
+}
+
+
 void FelhasznaloLista::ujFelhasznalo(const string& felhasznaloNev, const string& jelszo,
                                      const string& vezetekNev, const string& keresztNev, int tipus)
 {

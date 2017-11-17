@@ -67,7 +67,10 @@ void AdatFile::mentes(const string& masikUtvonal)
     for (auto& val : adat) {
         int i = 0;
         for (auto& str : val) {
-            output << str;
+            if (str == "")
+                output << "null";
+            else
+                output << str;
             if (i != val.size()-1)
                 output << "\t";
             i++;
