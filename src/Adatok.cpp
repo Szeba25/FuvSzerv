@@ -14,3 +14,8 @@ FelhasznaloLista& Adatok::getFelhasznaloLista()
 {
     return felhasznaloLista;
 }
+
+CegLista& Adatok::getCegLista()
+{
+    return cegLista;
+}

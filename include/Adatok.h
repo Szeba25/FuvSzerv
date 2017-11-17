@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include "FelhasznaloLista.h"
+#include "CegLista.h"
 
 using namespace std;
 
@@ -13,8 +14,10 @@ class Adatok
         virtual ~Adatok();
 
         FelhasznaloLista& getFelhasznaloLista();
+        CegLista& getCegLista();
     private:
         FelhasznaloLista felhasznaloLista;
+        CegLista cegLista;
 };
 
 #endif // ADATOK_H

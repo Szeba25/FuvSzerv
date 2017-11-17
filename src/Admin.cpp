@@ -27,8 +27,10 @@ bool Admin::parancsFeldolgoz(int parancs, Adatok& adatok)
     bool kilepes = false;
     switch(parancs) {
     case 1:
+        cegFelvetele(adatok.getCegLista());
         break;
     case 2:
+        cegTorlese(adatok.getCegLista());
         break;
     case 3:
         break;
@@ -124,3 +126,38 @@ void Admin::felhasznaloModositasa(FelhasznaloLista& lista)
     }
 }
 
+void Admin::cegFelvetele(CegLista& lista)
+{
+    string nev;
+    string cim;
+    string tipus;
+    int meret;
+
+    cin.ignore();
+    cout << "Adja meg a ceg nevet (szokozoket tartalmazhat!): ";
+    getline(cin, nev);
+    cout << "Adja meg a ceg cimet (szokozoket tartalmazhat!): ";
+    getline(cin, cim);
+    cout << "Adja meg a ceg tipusat (szokozoket tartalmazhat!): ";
+    getline(cin, tipus);
+    cout << "Adja meg a ceg meretet (1-9): ";
+    cin >> meret;
+    lista.ujCeg(nev, cim, tipus, meret);
+}
+
+void Admin::cegTorlese(CegLista& lista)
+{
+    int id;
+    cout << "Adja meg a torolni kivant ceg azonositojat: ";
+    cin >> id;
+    if (lista.cegLetezik(id)) {
+        lista.cegTorlese(id);
+    } else {
+        cout << "Nincs ilyen azonositoju ceg!" << endl;
+    }
+}
+
+void Admin::cegModositasa(CegLista& lista)
+{
+
+}

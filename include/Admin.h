@@ -17,6 +17,9 @@ class Admin : public Felhasznalo
         void felhasznalokListazasa(FelhasznaloLista& lista);
         void felhasznaloTorlese(FelhasznaloLista& lista);
         void felhasznaloModositasa(FelhasznaloLista& lista);
+        void cegFelvetele(CegLista& lista);
+        void cegTorlese(CegLista& lista);
+        void cegModositasa(CegLista& lista);
 };
 
 #endif // ADMIN_H
