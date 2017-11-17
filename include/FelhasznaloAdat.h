@@ -16,6 +16,7 @@ class FelhasznaloAdat
         const string& getVezetekNev() const;
         const string& getKeresztNev() const;
         int getTipus() const;
+        void kiir() const;
     private:
         string felhasznaloNev;
         string jelszo;

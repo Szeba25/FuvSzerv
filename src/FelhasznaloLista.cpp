@@ -9,11 +9,26 @@ FelhasznaloLista::~FelhasznaloLista()
 void FelhasznaloLista::beolvas()
 {
     AdatFile file("felhasznalolista.txt");
-    for (auto ertek : file.osszAdatLeker()) {
+    for (auto& ertek : file.osszAdatLeker()) {
         FelhasznaloAdat felhasznaloAdat(ertek[0], ertek[1], ertek[2], ertek[3], atoi(ertek[4].c_str()));
         felhasznaloAdatok.push_back(felhasznaloAdat);
     }
 }
+
+void FelhasznaloLista::mentes()
+{
+    AdatFile file;
+    for (auto& adat: felhasznaloAdatok) {
+        file.ujSor();
+        file.ujAdat(adat.getFelhasznaloNev());
+        file.ujAdat(adat.getJelszo());
+        file.ujAdat(adat.getVezetekNev());
+        file.ujAdat(adat.getKeresztNev());
+        file.ujAdat(utils::to_string(adat.getTipus()));
+    }
+    file.mentes("felhasznalolista.txt");
+}
+
 
 FelhasznaloAdat* FelhasznaloLista::getFelhasznaloAdatLoginAlapjan(const string& felhasznaloNev, const string& jelszo)
 {
@@ -24,3 +39,32 @@ FelhasznaloAdat* FelhasznaloLista::getFelhasznaloAdatLoginAlapjan(const string& 
     }
     return nullptr;
 }
+
+bool FelhasznaloLista::felhasznaloNevLetezik(const string& felhasznaloNev)
+{
+    for (auto& adat : felhasznaloAdatok) {
+        if (adat.getFelhasznaloNev() == felhasznaloNev) {
+            return true;
+        }
+    }
+    return false;
+}
+
+void FelhasznaloLista::ujFelhasznalo(const string& felhasznaloNev, const string& jelszo,
+                                     const string& vezetekNev, const string& keresztNev, int tipus)
+{
+    felhasznaloAdatok.push_back(FelhasznaloAdat(felhasznaloNev,
+                                                jelszo,
+                                                vezetekNev,
+                                                keresztNev,
+                                                tipus));
+    mentes();
+}
+
+void FelhasznaloLista::kiir() const
+{
+    for (auto& adat : felhasznaloAdatok) {
+        adat.kiir();
+    }
+}
+
