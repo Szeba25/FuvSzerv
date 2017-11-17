@@ -75,10 +75,10 @@ void FelhasznaloAdat::kiir() const
         tipusStr = "Kamionos";
         break;
     }
-    cout << "> felhasznalonev: " << felhasznaloNev << "\t" << endl;
-    cout << "jelszo: " << jelszo << "\t" << endl;
-    cout << "vezeteknev: " << vezetekNev << "\t" << endl;
-    cout << "keresztnev: " << keresztNev << "\t" << endl;
+    cout << "> felhasznalonev: " << felhasznaloNev << endl;
+    cout << "jelszo: " << jelszo << endl;
+    cout << "vezeteknev: " << vezetekNev << endl;
+    cout << "keresztnev: " << keresztNev << endl;
     cout << "tipus: " << tipusStr << endl << endl;
 }
 

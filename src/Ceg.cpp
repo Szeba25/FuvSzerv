@@ -58,9 +58,10 @@ void Ceg::setMeret(int meret)
 
 void Ceg::kiir() const
 {
-    cout << "> cegnev: " << nev << "\t" << endl;
-    cout << "cim: " << cim << "\t" << endl;
-    cout << "tipus: " << tipus << "\t" << endl;
-    cout << "meret: " << meret << "\t" << endl << endl;
+    cout << "ID: " << id << endl;
+    cout << "cegnev: " << nev << endl;
+    cout << "cim: " << cim << endl;
+    cout << "tipus: " << tipus << endl;
+    cout << "meret: " << meret << endl << endl;
 }
 

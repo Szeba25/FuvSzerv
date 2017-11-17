@@ -76,3 +76,23 @@ int CegLista::idGen() const
     }
     return maxId+1;
 }
+
+void CegLista::cegModositasa(int id, const string& ujNev, const string& ujCim, const string& ujTipus, int ujMeret)
+{
+    Ceg* modositandoCeg = getCegIdAlapjan(id);
+    if (ujNev != "*") modositandoCeg->setNev(ujNev);
+    if (ujCim != "*") modositandoCeg->setCim(ujCim);
+    if (ujTipus != "*") modositandoCeg->setTipus(ujTipus);
+    if (ujMeret != -1) modositandoCeg->setMeret(ujMeret);
+    mentes();
+}
+
+Ceg* CegLista::getCegIdAlapjan(int id)
+{
+    for (auto& ceg : cegek) {
+        if (ceg.getId() == id) {
+            return &ceg;
+        }
+    }
+    return nullptr;
+}

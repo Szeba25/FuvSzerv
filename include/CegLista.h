@@ -22,10 +22,12 @@ class CegLista
 
         void ujCeg(const string& nev, const string& cim, const string& tipus, int meret);
         void cegTorlese(int id);
+        void cegModositasa(int id, const string& ujNev, const string& ujCim,
+                           const string& ujTipus, int ujMeret);
     private:
         vector<Ceg> cegek;
         int idGen() const;
-
+        Ceg* getCegIdAlapjan(int id);
 };
 
 #endif // CEGLISTA_H

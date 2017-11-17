@@ -20,6 +20,7 @@ class Admin : public Felhasznalo
         void cegFelvetele(CegLista& lista);
         void cegTorlese(CegLista& lista);
         void cegModositasa(CegLista& lista);
+        void cegekListazasa(CegLista& lista);
 };
 
 #endif // ADMIN_H

@@ -3,6 +3,7 @@
 Adatok::Adatok()
 {
     felhasznaloLista.beolvas();
+    cegLista.beolvas();
 }
 
 Adatok::~Adatok()

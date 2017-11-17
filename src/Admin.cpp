@@ -33,6 +33,7 @@ bool Admin::parancsFeldolgoz(int parancs, Adatok& adatok)
         cegTorlese(adatok.getCegLista());
         break;
     case 3:
+        cegModositasa(adatok.getCegLista());
         break;
     case 4:
         felhasznaloFelvetele(adatok.getFelhasznaloLista());
@@ -47,6 +48,7 @@ bool Admin::parancsFeldolgoz(int parancs, Adatok& adatok)
         felhasznaloModositasa(adatok.getFelhasznaloLista());
         break;
     case 8:
+        cegekListazasa(adatok.getCegLista());
         break;
     case 9:
         kilepes = true;
@@ -159,5 +161,32 @@ void Admin::cegTorlese(CegLista& lista)
 
 void Admin::cegModositasa(CegLista& lista)
 {
+    string ujNev;
+    string ujCim;
+    string ujTipus;
+    int ujMeret;
 
+    cout << "Adja meg a modositani kivant ceg azonositojat: ";
+    int id;
+    cin >> id;
+    if (lista.cegLetezik(id)) {
+        cin.ignore();
+        cout << "Adja meg az uj ceg nevet (szokozoket tartalmazhat! * = nem valtozik): ";
+        getline(cin, ujNev);
+        cout << "Adja meg az uj ceg cimet (szokozoket tartalmazhat! * = nem valtozik): ";
+        getline(cin, ujCim);
+        cout << "Adja meg az uj ceg tipusat (szokozoket tartalmazhat! * = nem valtozik): ";
+        getline(cin, ujTipus);
+        cout << "Adja meg az uj ceg meretet (1-9, -1 = nem valtozik!): ";
+        cin >> ujMeret;
+        lista.cegModositasa(id, ujNev, ujCim, ujTipus, ujMeret);
+    } else {
+        cout << "Nincs ilyen azonositoju ceg!" << endl;
+    }
 }
+
+void Admin::cegekListazasa(CegLista& lista)
+{
+    lista.kiir();
+}
+
