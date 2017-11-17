@@ -16,6 +16,10 @@ class FelhasznaloAdat
         const string& getVezetekNev() const;
         const string& getKeresztNev() const;
         int getTipus() const;
+        void setJelszo(const string& jelszo);
+        void setVezetekNev(const string& vezetekNev);
+        void setKeresztNev(const string& keresztNev);
+        void setTipus(int tipus);
         void kiir() const;
     private:
         string felhasznaloNev;

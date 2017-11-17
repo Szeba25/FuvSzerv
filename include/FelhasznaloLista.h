@@ -19,12 +19,15 @@ class FelhasznaloLista
         void beolvas();
         void mentes();
         FelhasznaloAdat* getFelhasznaloAdatLoginAlapjan(const string& felhasznaloNev, const string& jelszo);
+        FelhasznaloAdat* getFelhasznaloAdatFelhasznaloNevAlapjan(const string& felhasznaloNev);
         bool felhasznaloNevLetezik(const string& felhasznaloNev);
 
         void ujFelhasznalo(const string& felhasznaloNev, const string& jelszo,
                            const string& vezetekNev, const string& keresztNev, int tipus);
         void kiir() const;
         void felhasznaloTorlese(const string& felhasznaloNev);
+        void felhasznaloModositasa(const string& felhasznaloNev, const string& jelszo,
+                                   const string& vezetekNev, const string& keresztNev, int tipus);
     private:
         vector<FelhasznaloAdat> felhasznaloAdatok;
 };

@@ -37,6 +37,27 @@ int FelhasznaloAdat::getTipus() const
     return tipus;
 }
 
+void FelhasznaloAdat::setJelszo(const string& jelszo)
+{
+    this->jelszo = jelszo;
+}
+
+void FelhasznaloAdat::setVezetekNev(const string& vezetekNev)
+{
+    this->vezetekNev = vezetekNev;
+}
+
+void FelhasznaloAdat::setKeresztNev(const string& keresztNev)
+{
+    this->keresztNev = keresztNev;
+}
+
+void FelhasznaloAdat::setTipus(int tipus)
+{
+    this->tipus = tipus;
+}
+
+
 void FelhasznaloAdat::kiir() const
 {
     string tipusStr;

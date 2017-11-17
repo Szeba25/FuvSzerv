@@ -42,6 +42,7 @@ bool Admin::parancsFeldolgoz(int parancs, Adatok& adatok)
         felhasznaloTorlese(adatok.getFelhasznaloLista());
         break;
     case 7:
+        felhasznaloModositasa(adatok.getFelhasznaloLista());
         break;
     case 8:
         break;
@@ -56,8 +57,8 @@ void Admin::felhasznaloFelvetele(FelhasznaloLista& lista)
 {
     string ujFelhasznaloNev;
     string ujJelszo;
-    string ujKeresztNev;
     string ujVezetekNev;
+    string ujKeresztNev;
     int ujTipus;
 
     cout << "Adja meg a felhasznalonevet: ";
@@ -69,7 +70,7 @@ void Admin::felhasznaloFelvetele(FelhasznaloLista& lista)
         cin >> ujVezetekNev;
         cout << "Adja meg a keresztnevet: ";
         cin >> ujKeresztNev;
-        cout << "Adja meg a felhasznalo tipusat: 0: tulajdonos, 1: admin, 2: titkar, 3: kamionos\n:";
+        cout << "Adja meg a felhasznalo tipusat 0: tulajdonos, 1: admin, 2: titkar, 3: kamionos\n:";
         cin >> ujTipus;
         lista.ujFelhasznalo(ujFelhasznaloNev,
                                ujJelszo,
@@ -93,16 +94,33 @@ void Admin::felhasznaloTorlese(FelhasznaloLista& lista)
     cin >> delFelhasznaloNev;
     if (lista.felhasznaloNevLetezik(delFelhasznaloNev)) {
         lista.felhasznaloTorlese(delFelhasznaloNev);
+    } else {
+        cout << "A felhasznalonev nem letezik!" << endl;
     }
 }
 
 void Admin::felhasznaloModositasa(FelhasznaloLista& lista)
 {
     string modFelhasznaloNev;
+    string ujJelszo;
+    string ujVezetekNev;
+    string ujKeresztNev;
+    int ujTipus;
+
     cout << "Adjon meg egy felhasznalo nevet: ";
     cin >> modFelhasznaloNev;
     if (lista.felhasznaloNevLetezik(modFelhasznaloNev)) {
-
+        cout << "Adjon meg egy uj jelszot (* = nem valtozik): ";
+        cin >> ujJelszo;
+        cout << "Adjon meg egy uj vezeteknevet (* = nem valtozik): ";
+        cin >> ujVezetekNev;
+        cout << "Adjon meg egy uj keresztnevet (* = nem valtozik): ";
+        cin >> ujKeresztNev;
+        cout << "Adjon meg egy uj tipust -1: nem valtozik, 0: tulajdonos, 1: admin, 2: titkar, 3: kamionos\n:";
+        cin >> ujTipus;
+        lista.felhasznaloModositasa(modFelhasznaloNev, ujJelszo, ujVezetekNev, ujKeresztNev, ujTipus);
+    } else {
+        cout << "A felhasznalonev nem letezik!" << endl;
     }
 }
 

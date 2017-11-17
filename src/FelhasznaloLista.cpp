@@ -40,6 +40,16 @@ FelhasznaloAdat* FelhasznaloLista::getFelhasznaloAdatLoginAlapjan(const string& 
     return nullptr;
 }
 
+FelhasznaloAdat* FelhasznaloLista::getFelhasznaloAdatFelhasznaloNevAlapjan(const string& felhasznaloNev)
+{
+    for (auto& adat : felhasznaloAdatok) {
+        if (adat.getFelhasznaloNev() == felhasznaloNev) {
+            return &adat;
+        }
+    }
+    return nullptr;
+}
+
 bool FelhasznaloLista::felhasznaloNevLetezik(const string& felhasznaloNev)
 {
     for (auto& adat : felhasznaloAdatok) {
@@ -79,3 +89,13 @@ void FelhasznaloLista::felhasznaloTorlese(const string& felhasznaloNev)
     mentes();
 }
 
+void FelhasznaloLista::felhasznaloModositasa(const string& felhasznaloNev, const string& jelszo,
+                                             const string& vezetekNev, const string& keresztNev, int tipus)
+{
+    FelhasznaloAdat* adat = getFelhasznaloAdatFelhasznaloNevAlapjan(felhasznaloNev);
+    if (jelszo != "*") adat->setJelszo(jelszo);
+    if (vezetekNev != "*") adat->setVezetekNev(vezetekNev);
+    if (keresztNev != "*") adat->setKeresztNev(keresztNev);
+    if (tipus != -1) adat->setTipus(tipus);
+    mentes();
+}
