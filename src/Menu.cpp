@@ -6,7 +6,9 @@ Menu::Menu() :
 {}
 
 Menu::~Menu()
-{}
+{
+    delete felhasznalo;
+}
 
 bool Menu::mutat(Adatok& adatok)
 {

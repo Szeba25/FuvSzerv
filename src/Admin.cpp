@@ -2,8 +2,7 @@
 
 Admin::Admin(const string& felhasznaloNev, const string& vezetekNev, const string& keresztNev) :
     Felhasznalo(felhasznaloNev, vezetekNev, keresztNev)
-{
-}
+{}
 
 Admin::~Admin()
 {}
