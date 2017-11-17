@@ -20,7 +20,7 @@ class FelhasznaloAdat
         void setVezetekNev(const string& vezetekNev);
         void setKeresztNev(const string& keresztNev);
         void setTipus(int tipus);
-        void kiir() const;
+        void kiir(bool jelszotIs = true) const;
     private:
         string felhasznaloNev;
         string jelszo;

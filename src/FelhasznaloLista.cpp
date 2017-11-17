@@ -89,6 +89,16 @@ void FelhasznaloLista::kiir() const
     }
 }
 
+void FelhasznaloLista::kiirKamionosok() const
+{
+    for (const FelhasznaloAdat& adat : felhasznaloAdatok) {
+        if (adat.getTipus() == 3) {
+            adat.kiir(false);
+        }
+    }
+}
+
+
 void FelhasznaloLista::felhasznaloTorlese(const string& felhasznaloNev)
 {
     for (vector<FelhasznaloAdat>::iterator it = felhasznaloAdatok.begin(); it != felhasznaloAdatok.end(); ++it) {
@@ -104,9 +114,9 @@ void FelhasznaloLista::felhasznaloModositasa(const string& felhasznaloNev, const
                                              const string& vezetekNev, const string& keresztNev, int tipus)
 {
     FelhasznaloAdat* adat = getFelhasznaloAdatFelhasznaloNevAlapjan(felhasznaloNev);
-    if (jelszo != "*") adat->setJelszo(jelszo);
-    if (vezetekNev != "*") adat->setVezetekNev(vezetekNev);
-    if (keresztNev != "*") adat->setKeresztNev(keresztNev);
+    if (jelszo != "") adat->setJelszo(jelszo);
+    if (vezetekNev != "") adat->setVezetekNev(vezetekNev);
+    if (keresztNev != "") adat->setKeresztNev(keresztNev);
     if (tipus != -1) adat->setTipus(tipus);
     mentes();
 }

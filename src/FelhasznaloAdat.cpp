@@ -57,8 +57,7 @@ void FelhasznaloAdat::setTipus(int tipus)
     this->tipus = tipus;
 }
 
-
-void FelhasznaloAdat::kiir() const
+void FelhasznaloAdat::kiir(bool jelszotIs) const
 {
     string tipusStr;
     switch (tipus) {
@@ -76,9 +75,10 @@ void FelhasznaloAdat::kiir() const
         break;
     }
     cout << "> felhasznalonev: " << felhasznaloNev << endl;
-    cout << "jelszo: " << jelszo << endl;
+    if (jelszotIs)
+        cout << "jelszo: " << jelszo << endl << endl;
     cout << "vezeteknev: " << vezetekNev << endl;
     cout << "keresztnev: " << keresztNev << endl;
-    cout << "tipus: " << tipusStr << endl << endl;
+    cout << "tipus: " << tipusStr << endl;
 }
 

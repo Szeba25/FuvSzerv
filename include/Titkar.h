@@ -16,8 +16,12 @@ class Titkar : public Felhasznalo
         // USE CASES
         void fuvarHozzaadasa(FelhasznaloLista& felhLista, FuvarLista& lista);
         void fuvarokListazasa(FuvarLista& lista);
+        void fuvarModositasa(FelhasznaloLista& felhLista, FuvarLista& lista);
+        void fuvarokKeresese(FuvarLista& lista);
+        void kamionosFelhasznalokListazasa(FelhasznaloLista& felhLista);
+        void cegekListazasa(CegLista& cegLista);
 
-        bool fuvarAdatokFormaiHelyessege(double mennyiseg, double tavolsag, int prioritas);
+        bool fuvarAdatokFormaiHelyessege(bool maradFlag, double mennyiseg, double tavolsag, int prioritas, int ar = -1);
 };
 
 #endif // TITKAR_H

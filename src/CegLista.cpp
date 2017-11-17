@@ -80,9 +80,9 @@ int CegLista::idGen() const
 void CegLista::cegModositasa(int id, const string& ujNev, const string& ujCim, const string& ujTipus, int ujMeret)
 {
     Ceg* modositandoCeg = getCegIdAlapjan(id);
-    if (ujNev != "*") modositandoCeg->setNev(ujNev);
-    if (ujCim != "*") modositandoCeg->setCim(ujCim);
-    if (ujTipus != "*") modositandoCeg->setTipus(ujTipus);
+    if (ujNev != "") modositandoCeg->setNev(ujNev);
+    if (ujCim != "") modositandoCeg->setCim(ujCim);
+    if (ujTipus != "") modositandoCeg->setTipus(ujTipus);
     if (ujMeret != -1) modositandoCeg->setMeret(ujMeret);
     mentes();
 }

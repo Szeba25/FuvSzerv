@@ -26,6 +26,7 @@ class FelhasznaloLista
         void ujFelhasznalo(const string& felhasznaloNev, const string& jelszo,
                            const string& vezetekNev, const string& keresztNev, int tipus);
         void kiir() const;
+        void kiirKamionosok() const;
         void felhasznaloTorlese(const string& felhasznaloNev);
         void felhasznaloModositasa(const string& felhasznaloNev, const string& jelszo,
                                    const string& vezetekNev, const string& keresztNev, int tipus);

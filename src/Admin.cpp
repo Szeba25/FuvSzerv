@@ -120,11 +120,11 @@ void Admin::felhasznaloModositasa(FelhasznaloLista& lista)
     cout << "Adjon meg egy felhasznalo nevet: ";
     getline(cin, modFelhasznaloNev);
     if (lista.felhasznaloNevLetezik(modFelhasznaloNev)) {
-        cout << "Adjon meg egy uj jelszot (* = nem valtozik): ";
+        cout << "Adjon meg egy uj jelszot (\"\" = nem valtozik): ";
         getline(cin, ujJelszo);
-        cout << "Adjon meg egy uj vezeteknevet (* = nem valtozik): ";
+        cout << "Adjon meg egy uj vezeteknevet (\"\" = nem valtozik): ";
         getline(cin, ujVezetekNev);
-        cout << "Adjon meg egy uj keresztnevet (* = nem valtozik): ";
+        cout << "Adjon meg egy uj keresztnevet (\"\" = nem valtozik): ";
         getline(cin, ujKeresztNev);
         cout << "Adjon meg egy uj tipust (-1=nem valtozik, 0=tulajdonos, 1=admin, 2=titkar, 3=kamionos)\n:";
         cin >> ujTipus;
@@ -185,11 +185,11 @@ void Admin::cegModositasa(CegLista& lista)
     cin >> id;
     if (lista.cegLetezik(id)) {
         cin.ignore();
-        cout << "Adja meg az uj ceg nevet (* = nem valtozik): ";
+        cout << "Adja meg az uj ceg nevet (\"\" = nem valtozik): ";
         getline(cin, ujNev);
-        cout << "Adja meg az uj ceg cimet (* = nem valtozik): ";
+        cout << "Adja meg az uj ceg cimet (\"\" = nem valtozik): ";
         getline(cin, ujCim);
-        cout << "Adja meg az uj ceg tipusat (* = nem valtozik): ";
+        cout << "Adja meg az uj ceg tipusat (\"\" = nem valtozik): ";
         getline(cin, ujTipus);
         cout << "Adja meg az uj ceg meretet ([1-9], -1 = nem valtozik!): ";
         cin >> ujMeret;
