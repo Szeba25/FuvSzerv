@@ -70,21 +70,20 @@ void Titkar::fuvarHozzaadasa(FelhasznaloLista& felhLista, FuvarLista& lista)
         cout << "Adja meg az aru megnevezeset: ";
         getline(cin, aruMegnevezes);
         cout << "Adja meg a mennyiseget (kg): ";
-        cin >> mennyiseg;
-        cin.ignore();
+        mennyiseg = utils::getdouble();
         cout << "Adja meg a celallomast: ";
         getline(cin, cel);
-        cout << "Adja meg a szallitas idejet: ";
+        cout << "Adja meg a szallitas idejet (eeee.hh.nn): ";
         getline(cin, mikor);
         cout << "Adja meg a tavolsagot (km): ";
-        cin >> tavolsag;
+        tavolsag = utils::getdouble();
         cout << "Adja meg a prioritast [1-9]: ";
-        cin >> prioritas;
-        cin.ignore();
+        prioritas = utils::getint();
         cout << "Specialis igenyek: ";
         getline(cin, specialisIgenyek);
         cout << "Megjegyzesek: ";
         getline(cin, megjegyzesek);
+
         if (fuvarAdatokFormaiHelyessege(false, mennyiseg, tavolsag, prioritas)) {
             lista.fuvarHozzaadasa(kamionosFelhasznaloNeve, honnan, aruMegnevezes,
                                   mennyiseg, cel, mikor, tavolsag,
@@ -104,10 +103,7 @@ void Titkar::fuvarokListazasa(FuvarLista& lista)
 
 void Titkar::fuvarModositasa(FelhasznaloLista& felhLista, FuvarLista& lista)
 {
-    cout << "Adja meg a modositani kivant fuvar azonositojat: ";
     int id;
-    cin >> id;
-
     string kamionosFelhasznaloNeve;
     string honnan;
     string aruMegnevezes;
@@ -123,8 +119,11 @@ void Titkar::fuvarModositasa(FelhasznaloLista& felhLista, FuvarLista& lista)
     int ar;
     string megjegyzesek;
 
+    cin.ignore();
+    cout << "Adja meg a modositani kivant fuvar azonositojat: ";
+    id = utils::getint();
+
     if (lista.fuvarLetezik(id)) {
-        cin.ignore();
         cout << "Adja meg az uj kamionos felhasznalonevet (\"\" = nem valtozik): ";
         getline(cin, kamionosFelhasznaloNeve);
         if (kamionosFelhasznaloNeve == "" || felhLista.kamionosFelhasznaloNevLetezik(kamionosFelhasznaloNeve)) {
@@ -132,29 +131,26 @@ void Titkar::fuvarModositasa(FelhasznaloLista& felhLista, FuvarLista& lista)
             getline(cin, honnan);
             cout << "Adja meg az aru uj megnevezeset (\"\" = nem valtozik): ";
             getline(cin, aruMegnevezes);
-            cout << "Adja meg az uj mennyiseget (kg, -1 = nem valtozik): ";
-            cin >> mennyiseg;
-            cin.ignore();
+            cout << "Adja meg az uj mennyiseget (kg, \"\" = nem valtozik): ";
+            mennyiseg = utils::getdouble();
             cout << "Adja meg az uj celallomast (\"\" = nem valtozik): ";
             getline(cin, cel);
-            cout << "Adja meg az uj szallitas idejet (\"\" = nem valtozik): ";
+            cout << "Adja meg az uj szallitas idejet (eeee.hh.nn) (\"\" = nem valtozik): ";
             getline(cin, mikor);
-            cout << "Adja meg az uj tavolsagot (km, -1 = nem valtozik): ";
-            cin >> tavolsag;
-            cout << "Adja meg az uj prioritast ([1-9] -1 = nem valtozik): ";
-            cin >> prioritas;
-            cin.ignore();
-            cout << "Specialis igenyek (\"\" = nem valtozik): ";
+            cout << "Adja meg az uj tavolsagot (km, \"\" = nem valtozik): ";
+            tavolsag = utils::getdouble();
+            cout << "Adja meg az uj prioritast ([1-9] \"\" = nem valtozik): ";
+            prioritas = utils::getint();
+            cout << "Adja meg az uj specialis igenyeket (\"\" = nem valtozik): ";
             getline(cin, specialisIgenyek);
-            cout << "Allapot (\"\" = nem valtozik): ";
+            cout << "Adja meg az uj allapotot (\"\" = nem valtozik): ";
             getline(cin, allapot);
-            cout << "Atveves ideje (\"\" = nem valtozik): ";
+            cout << "Adja meg az uj atveves idejet (eeee.hh.nn) (\"\" = nem valtozik): ";
             getline(cin, atvevesIdeje);
-            cout << "Atvevo teljes neve (\"\" = nem valtozik): ";
+            cout << "Adja meg az uj atvevo teljes nevet (\"\" = nem valtozik): ";
             getline(cin, atvevoTeljesNeve);
-            cout << "Adja meg az uj arat (Ft) (-1 = nem valtozik): ";
-            cin >> ar;
-            cin.ignore();
+            cout << "Adja meg az uj arat (Ft) (\"\" = nem valtozik): ";
+            ar = utils::getint();
             cout << "Megjegyzesek (\"\" = nem valtozik): ";
             getline(cin, megjegyzesek);
 
@@ -185,9 +181,10 @@ void Titkar::fuvarokKeresese(FuvarLista& lista)
     string keresAllapot;
     string keresAtvevesIdeje;
     string keresAtvevoTeljesNeve;
-    cout << "Fuvar azonosito (-1 = kihagyas): ";
-    cin >> keresId;
+
     cin.ignore();
+    cout << "Fuvar azonosito (\"\" = kihagyas): ";
+    keresId = utils::getint();
     cout << "Kamionos felhasznalo neve (\"\" = kihagyas): ";
     getline(cin, keresKamionosFelhasznaloNeve);
     cout << "Arut honnan szallitottak (\"\" = kihagyas): ";
@@ -196,14 +193,13 @@ void Titkar::fuvarokKeresese(FuvarLista& lista)
     getline(cin, keresAruMegnevezes);
     cout << "Celallomas (\"\" = kihagyas): ";
     getline(cin, keresCel);
-    cout << "Szallitas ideje (\"\" = kihagyas): ";
+    cout << "Szallitas ideje (eeee.hh.nn) (\"\" = kihagyas): ";
     getline(cin, keresMikor);
-    cout << "Prioritas (-1 = kihagyas): ";
-    cin >> keresPrioritas;
-    cin.ignore();
+    cout << "Prioritas (\"\" = kihagyas): ";
+    keresPrioritas = utils::getint();
     cout << "Allapot (\"\" = kihagyas): ";
     getline(cin, keresAllapot);
-    cout << "Atveves ideje (\"\" = kihagyas): ";
+    cout << "Atveves ideje (eeee.hh.nn) (\"\" = kihagyas): ";
     getline(cin, keresAtvevesIdeje);
     cout << "Atvevo teljes neve (\"\" = kihagyas): ";
     getline(cin, keresAtvevoTeljesNeve);

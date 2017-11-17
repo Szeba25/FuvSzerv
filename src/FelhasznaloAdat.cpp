@@ -76,9 +76,9 @@ void FelhasznaloAdat::kiir(bool jelszotIs) const
     }
     cout << "> felhasznalonev: " << felhasznaloNev << endl;
     if (jelszotIs)
-        cout << "jelszo: " << jelszo << endl << endl;
+        cout << "jelszo: " << jelszo << endl;
     cout << "vezeteknev: " << vezetekNev << endl;
     cout << "keresztnev: " << keresztNev << endl;
-    cout << "tipus: " << tipusStr << endl;
+    cout << "tipus: " << tipusStr << endl << endl;
 }
 

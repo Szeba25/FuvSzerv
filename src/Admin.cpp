@@ -74,7 +74,8 @@ void Admin::felhasznaloFelvetele(FelhasznaloLista& lista)
         cout << "Adja meg a keresztnevet: ";
         getline(cin, ujKeresztNev);
         cout << "Adja meg a felhasznalo tipusat (0=tulajdonos, 1=admin, 2=titkar, 3=kamionos)\n:";
-        cin >> ujTipus;
+        ujTipus = utils::getint();
+
         if (felhasznaloAdataiFormaiEllenorzes(ujTipus)) {
             lista.ujFelhasznalo(ujFelhasznaloNev,
                                ujJelszo,
@@ -126,8 +127,9 @@ void Admin::felhasznaloModositasa(FelhasznaloLista& lista)
         getline(cin, ujVezetekNev);
         cout << "Adjon meg egy uj keresztnevet (\"\" = nem valtozik): ";
         getline(cin, ujKeresztNev);
-        cout << "Adjon meg egy uj tipust (-1=nem valtozik, 0=tulajdonos, 1=admin, 2=titkar, 3=kamionos)\n:";
-        cin >> ujTipus;
+        cout << "Adjon meg egy uj tipust (\"\"=nem valtozik, 0=tulajdonos, 1=admin, 2=titkar, 3=kamionos)\n:";
+        ujTipus = utils::getint();
+
         if (ujTipus == -1 || felhasznaloAdataiFormaiEllenorzes(ujTipus)) {
             lista.felhasznaloModositasa(modFelhasznaloNev, ujJelszo, ujVezetekNev, ujKeresztNev, ujTipus);
         } else {
@@ -153,7 +155,8 @@ void Admin::cegFelvetele(CegLista& lista)
     cout << "Adja meg a ceg tipusat: ";
     getline(cin, tipus);
     cout << "Adja meg a ceg meretet [1-9]: ";
-    cin >> meret;
+    meret = utils::getint();
+
     if (cegAdataiFormaiEllenorzes(meret)) {
         lista.ujCeg(nev, cim, tipus, meret);
     } else {
@@ -165,7 +168,8 @@ void Admin::cegTorlese(CegLista& lista)
 {
     int id;
     cout << "Adja meg a torolni kivant ceg azonositojat (szam): ";
-    cin >> id;
+    id = utils::getint();
+
     if (lista.cegLetezik(id)) {
         lista.cegTorlese(id);
     } else {
@@ -180,19 +184,21 @@ void Admin::cegModositasa(CegLista& lista)
     string ujTipus;
     int ujMeret;
 
+    cin.ignore();
     cout << "Adja meg a modositani kivant ceg azonositojat (szam): ";
     int id;
-    cin >> id;
+    id = utils::getint();
+
     if (lista.cegLetezik(id)) {
-        cin.ignore();
         cout << "Adja meg az uj ceg nevet (\"\" = nem valtozik): ";
         getline(cin, ujNev);
         cout << "Adja meg az uj ceg cimet (\"\" = nem valtozik): ";
         getline(cin, ujCim);
         cout << "Adja meg az uj ceg tipusat (\"\" = nem valtozik): ";
         getline(cin, ujTipus);
-        cout << "Adja meg az uj ceg meretet ([1-9], -1 = nem valtozik!): ";
-        cin >> ujMeret;
+        cout << "Adja meg az uj ceg meretet ([1-9], \"\" = nem valtozik!): ";
+        ujMeret = utils::getint();
+
         if (ujMeret == -1 || cegAdataiFormaiEllenorzes(ujMeret)) {
             lista.cegModositasa(id, ujNev, ujCim, ujTipus, ujMeret);
         } else {

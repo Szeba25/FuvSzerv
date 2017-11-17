@@ -21,7 +21,7 @@ class Titkar : public Felhasznalo
         void kamionosFelhasznalokListazasa(FelhasznaloLista& felhLista);
         void cegekListazasa(CegLista& cegLista);
 
-        bool fuvarAdatokFormaiHelyessege(bool maradFlag, double mennyiseg, double tavolsag, int prioritas, int ar = -1);
+        bool fuvarAdatokFormaiHelyessege(bool maradFlag, double mennyiseg, double tavolsag, int prioritas, int ar = 1);
 };
 
 #endif // TITKAR_H

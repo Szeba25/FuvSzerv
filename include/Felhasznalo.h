@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include "Adatok.h"
+#include "utilities.h"
 
 using namespace std;
 

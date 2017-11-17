@@ -162,6 +162,8 @@ void FuvarLista::fuvarModositasa(int id,
     if (atvevoTeljesNeve != "") fuvar->setAtvevoTeljesNeve(atvevoTeljesNeve);
     if (ar != -1) fuvar->setAr(ar);
     if (megjegyzesek != "") fuvar->setMegjegyzesek(megjegyzesek);
+
+    mentes();
 }
 
 int FuvarLista::genId()

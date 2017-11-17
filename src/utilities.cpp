@@ -22,4 +22,32 @@ double to_double(const string& str) {
     return d;
 }
 
+double getdouble() {
+    string str;
+    getline(cin, str);
+    double d = -1;
+    if (str != "") {
+        d = to_double(str);
+    }
+    return d;
+}
+
+int to_int(const string& str) {
+    stringstream ss;
+    ss << str;
+    int i;
+    ss >> i;
+    return i;
+}
+
+int getint() {
+    string str;
+    getline(cin, str);
+    int i = -1;
+    if (str != "") {
+        i = to_int(str);
+    }
+    return i;
+}
+
 }
