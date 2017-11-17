@@ -15,9 +15,10 @@ void Titkar::menuMutat()
     cout << "> 4 : fuvarok keresese" << endl;
     cout << "> 5 : kamionos felhasznalok listazasa" << endl;
     cout << "> 6 : cegek listazasa" << endl;
+    cout << "> 7 : kilepes" << endl;
 }
 
-void Titkar::parancsFeldolgoz(int parancs, Adatok& adatok)
+bool Titkar::parancsFeldolgoz(int parancs, Adatok& adatok)
 {
-
+    return true;
 }

@@ -10,7 +10,7 @@ class Kamionos : public Felhasznalo
         virtual ~Kamionos();
 
         virtual void menuMutat();
-        virtual void parancsFeldolgoz(int parancs, Adatok& adatok);
+        virtual bool parancsFeldolgoz(int parancs, Adatok& adatok);
 };
 
 #endif // KAMIONOS_H

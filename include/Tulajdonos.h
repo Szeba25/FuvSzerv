@@ -10,7 +10,7 @@ class Tulajdonos : public Felhasznalo
         virtual ~Tulajdonos();
 
         virtual void menuMutat();
-        virtual void parancsFeldolgoz(int parancs, Adatok& adatok);
+        virtual bool parancsFeldolgoz(int parancs, Adatok& adatok);
 };
 
 #endif // TULAJDONOS_H

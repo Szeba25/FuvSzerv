@@ -1,6 +1,10 @@
 #ifndef ADATOK_H
 #define ADATOK_H
 
+#include <iostream>
+#include "FelhasznaloLista.h"
+
+using namespace std;
 
 class Adatok
 {
@@ -8,9 +12,9 @@ class Adatok
         Adatok();
         virtual ~Adatok();
 
-    protected:
-
+        FelhasznaloLista& getFelhasznaloLista();
     private:
+        FelhasznaloLista felhasznaloLista;
 };
 
 #endif // ADATOK_H

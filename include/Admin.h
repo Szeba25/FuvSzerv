@@ -10,7 +10,7 @@ class Admin : public Felhasznalo
         virtual ~Admin();
 
         virtual void menuMutat();
-        virtual void parancsFeldolgoz(int parancs, Adatok& adatok);
+        virtual bool parancsFeldolgoz(int parancs, Adatok& adatok);
 };
 
 #endif // ADMIN_H

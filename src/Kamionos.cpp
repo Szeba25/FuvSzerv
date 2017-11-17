@@ -13,9 +13,10 @@ void Kamionos::menuMutat()
     cout << "> 2 : fuvar allapotanak modositasa" << endl;
     cout << "> 3 : fuvar megjegyzesek modositasa" << endl;
     cout << "> 4 : fuvarok keresese" << endl;
+    cout << "> 5 : kilepes" << endl;
 }
 
-void Kamionos::parancsFeldolgoz(int parancs, Adatok& adatok)
+bool Kamionos::parancsFeldolgoz(int parancs, Adatok& adatok)
 {
-
+    return true;
 }

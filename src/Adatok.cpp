@@ -2,10 +2,15 @@
 
 Adatok::Adatok()
 {
-    //ctor
+    felhasznaloLista.beolvas();
 }
 
 Adatok::~Adatok()
 {
-    //dtor
+
+}
+
+FelhasznaloLista& Adatok::getFelhasznaloLista()
+{
+    return felhasznaloLista;
 }

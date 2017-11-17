@@ -13,8 +13,8 @@ class Felhasznalo
         virtual ~Felhasznalo();
 
         virtual void menuMutat() = 0;
-        virtual void parancsFeldolgoz(int parancs, Adatok& adatok) = 0;
-    private:
+        virtual bool parancsFeldolgoz(int parancs, Adatok& adatok) = 0;
+    protected:
         string felhasznaloNev;
         string vezetekNev;
         string keresztNev;
