@@ -21,6 +21,10 @@ class Admin : public Felhasznalo
         void cegTorlese(CegLista& lista); // A6
         void cegModositasa(CegLista& lista); // A7
         void cegekListazasa(CegLista& lista); // TA1
+
+        // formai ellenorzesek
+        bool felhasznaloAdataiFormaiEllenorzes(int tipus);
+        bool cegAdataiFormaiEllenorzes(int meret);
 };
 
 #endif // ADMIN_H

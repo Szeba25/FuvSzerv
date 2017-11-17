@@ -12,7 +12,7 @@ Menu::~Menu()
 
 bool Menu::mutat(Adatok& adatok)
 {
-    cout << "### Fuvarszervezo 2000 ###" << endl;
+    cout << endl << "### Fuvarszervezo 2000 ###" << endl;
     cout << "Udvozoljuk!" << endl;
     int parancs;
     bool kilepes = false;
@@ -28,10 +28,11 @@ bool Menu::mutat(Adatok& adatok)
         string felhasznaloNev, jelszo;
         switch (parancs) {
         case 1:
+            cin.ignore();
             cout << "Adja meg a felhasznalonevet: ";
-            cin >> felhasznaloNev;
+            getline(cin, felhasznaloNev);
             cout << "Adja meg a jelszot: ";
-            cin >> jelszo;
+            getline(cin, jelszo);
             bejelentkezve = bejelentkezes(felhasznaloNev, jelszo, adatok);
             break;
         case 2:
@@ -72,7 +73,7 @@ bool Menu::bejelentkezes(const string& felhasznaloNev, const string& jelszo, Ada
         }
         return true;
     } else {
-        cout << "A felhasznalonev nem letezik, vagy rossz a jelszo!" << endl;
+        cout << "HIBA: A felhasznalonev nem letezik, vagy rossz a jelszo!" << endl;
         return false;
     }
 }
