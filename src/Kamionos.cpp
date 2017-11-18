@@ -79,11 +79,17 @@ void Kamionos::fuvarAllapotModositasa(FuvarLista& lista)
         cout << "[Ha az adatot nem adja meg, az nem kerul modositasra!!!]" << endl;
         cout << "Adja meg az uj allapotot: ";
         getline(cin, allapot);
-        cout << "Adja meg az uj atveves idejet: ";
+        cout << "Adja meg az uj atveves idejet (eeee.hh.nn): ";
         getline(cin, atvevesIdeje);
         cout << "Adja meg az uj atvevo teljes nevet: ";
         getline(cin, atvevoTeljesNeve);
-        lista.fuvarModositasa(id, allapot, atvevesIdeje, atvevoTeljesNeve);
+
+        if (fuvarAdatokFormaiEllenorzese(atvevesIdeje)) {
+            lista.fuvarModositasa(id, allapot, atvevesIdeje, atvevoTeljesNeve);
+        } else {
+            cout << "A megadott datum helytelen formatumu!" << endl;
+        }
+
     } else {
         cout << "Nem letezik ilyen fuvar azonosito!" << endl;
     }
@@ -114,3 +120,10 @@ void Kamionos::fuvarAzonositokCelzottListazasa(FuvarLista& lista)
 {
     lista.kiirAzonositokLeszurve(aktivFelhasznaloNev);
 }
+
+bool Kamionos::fuvarAdatokFormaiEllenorzese(const string& datum)
+{
+    return (utils::is_hundate(datum));
+}
+
+
