@@ -30,7 +30,7 @@ class Fuvar
         double getTavolsag() const;
         int getPrioritas() const;
         const string& getSpecialisIgenyek() const;
-        const string& getAllapot() const;
+        int getAllapot() const;
         const string& getAtvevesIdeje() const;
         const string& getAtvevoTeljesNeve() const;
         int getAr() const;
@@ -45,7 +45,7 @@ class Fuvar
         void setTavolsag(double tavolsag);
         void setPrioritas(int prioritas);
         void setSpecialisIgenyek(const string& specialisIgenyek);
-        void setAllapot(const string& allapot);
+        void setAllapot(int allapot);
         void setAtvevesIdeje(const string& atvevesIdeje);
         void setAtvevoTeljesNeve(const string& atvevoTeljesNeve);
         void setAr(int ar);
@@ -63,7 +63,7 @@ class Fuvar
         double tavolsag; // km-ben! > 0
         int prioritas; // [1-9]
         string specialisIgenyek;
-        string allapot;
+        int allapot; // (0=feldolgozas alatt, 1=sikeres, 2=sikertelen)
         string atvevesIdeje;
         string atvevoTeljesNeve;
         int ar; // Ft-ban! >= 1

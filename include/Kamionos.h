@@ -21,7 +21,7 @@ class Kamionos : public AktivFelhasznalo
         // INCLUDE
         void fuvarAzonositokCelzottListazasa(FuvarLista& lista); // K2
 
-        bool fuvarAdatokFormaiEllenorzese(const string& datum);
+        bool fuvarAdatokFormaiEllenorzese(const string& datum, int allapot);
 };
 
 #endif // KAMIONOS_H

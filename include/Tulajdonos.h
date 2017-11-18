@@ -11,6 +11,9 @@ class Tulajdonos : public AktivFelhasznalo
 
         virtual void menuMutat();
         virtual bool parancsFeldolgoz(int parancs, Adatok& adatok);
+    private:
+        // USE CASES
+        void napiStatisztikaLekerese(FuvarLista& lista); // B1
 };
 
 #endif // TULAJDONOS_H

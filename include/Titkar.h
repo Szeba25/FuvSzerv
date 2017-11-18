@@ -26,7 +26,7 @@ class Titkar : public AktivFelhasznalo
                                          double tavolsag,
                                          int prioritas);
 
-        bool fuvarAdatokFormaiHelyessege(bool kihagyhato, int ar);
+        bool fuvarAdatokFormaiHelyessege(bool kihagyhato, int ar, int allapot);
         bool fuvarAdatokFormaiHelyessege(bool kihagyhato, const string& datum);
 };
 

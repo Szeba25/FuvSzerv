@@ -17,5 +17,24 @@ void Tulajdonos::menuMutat()
 
 bool Tulajdonos::parancsFeldolgoz(int parancs, Adatok& adatok)
 {
-    return true;
+    bool kilepes = false;
+    switch(parancs) {
+    case 1:
+        napiStatisztikaLekerese(adatok.getFuvarLista());
+        break;
+    case 2:
+        break;
+    case 3:
+        break;
+    case 4:
+        kilepes = true;
+        break;
+    }
+    return kilepes;
 }
+
+void Tulajdonos::napiStatisztikaLekerese(FuvarLista& lista)
+{
+
+}
+

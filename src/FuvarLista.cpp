@@ -1,14 +1,10 @@
 #include "FuvarLista.h"
 
 FuvarLista::FuvarLista()
-{
-    //ctor
-}
+{}
 
 FuvarLista::~FuvarLista()
-{
-    //dtor
-}
+{}
 
 void FuvarLista::beolvas()
 {
@@ -25,7 +21,7 @@ void FuvarLista::beolvas()
                     atoi(ertek[8].c_str()),
                     ertek[9],
                     ertek[14]);
-        fuvar.setAllapot(ertek[10]);
+        fuvar.setAllapot(atoi(ertek[10].c_str()));
         fuvar.setAtvevesIdeje(ertek[11]);
         fuvar.setAtvevoTeljesNeve(ertek[12]);
         fuvar.setAr(atoi(ertek[13].c_str()));
@@ -48,7 +44,7 @@ void FuvarLista::mentes()
         file.ujAdat(utils::to_string(fuvar.getTavolsag()));
         file.ujAdat(utils::to_string(fuvar.getPrioritas()));
         file.ujAdat(fuvar.getSpecialisIgenyek());
-        file.ujAdat(fuvar.getAllapot());
+        file.ujAdat(utils::to_string(fuvar.getAllapot()));
         file.ujAdat(fuvar.getAtvevesIdeje());
         file.ujAdat(fuvar.getAtvevoTeljesNeve());
         file.ujAdat(utils::to_string(fuvar.getAr()));
@@ -71,7 +67,7 @@ void FuvarLista::kiirLeszurve(int keresId,
                               const string& celCim,
                               const string& szallitasiDatum,
                               int prioritas,
-                              const string& allapot,
+                              int allapot,
                               const string& atvevesIdeje,
                               const string& atvevoTeljesNeve)
 {
@@ -83,7 +79,7 @@ void FuvarLista::kiirLeszurve(int keresId,
             matchString(celCim, fuvar.getCelCim()) &&
             matchString(szallitasiDatum, fuvar.getSzallitasiDatum()) &&
             matchInt(prioritas, fuvar.getPrioritas()) &&
-            matchString(allapot, fuvar.getAllapot()) &&
+            matchInt(allapot, fuvar.getAllapot()) &&
             matchString(atvevesIdeje, fuvar.getAtvevesIdeje()) &&
             matchString(atvevoTeljesNeve, fuvar.getAtvevoTeljesNeve()))
         {
@@ -155,7 +151,7 @@ void FuvarLista::fuvarHozzaadasa(const string& kamionosFelhasznaloNeve,
                 feladoCim, aruMegnevezes, mennyiseg,
                 celCim, szallitasiDatum, tavolsag, prioritas, specialisIgenyek, megjegyzesek);
     fuvar.setAr(ar);
-    fuvar.setAllapot("feldolgozas alatt");
+    fuvar.setAllapot(0);
     fuvarok.push_back(fuvar);
     mentes();
 }
@@ -170,7 +166,7 @@ void FuvarLista::fuvarModositasa(int id,
                                  double tavolsag,
                                  int prioritas,
                                  const string& specialisIgenyek,
-                                 const string& allapot,
+                                 int allapot,
                                  const string& atvevesIdeje,
                                  const string& atvevoTeljesNeve,
                                  int ar,
@@ -186,7 +182,7 @@ void FuvarLista::fuvarModositasa(int id,
     if (tavolsag != -1) fuvar->setTavolsag(tavolsag);
     if (prioritas != -1) fuvar->setPrioritas(prioritas);
     if (specialisIgenyek != "") fuvar->setSpecialisIgenyek(specialisIgenyek);
-    if (allapot != "") fuvar->setAllapot(allapot);
+    if (allapot != -1) fuvar->setAllapot(allapot);
     if (atvevesIdeje != "") fuvar->setAtvevesIdeje(atvevesIdeje);
     if (atvevoTeljesNeve != "") fuvar->setAtvevoTeljesNeve(atvevoTeljesNeve);
     if (ar != -1) fuvar->setAr(ar);
@@ -195,12 +191,12 @@ void FuvarLista::fuvarModositasa(int id,
     mentes();
 }
 
-void FuvarLista::fuvarModositasa(int id, const string& allapot, const string& atvevesIdeje,
+void FuvarLista::fuvarModositasa(int id, int allapot, const string& atvevesIdeje,
                                  const string& atvevoTeljesNeve)
 {
     Fuvar* fuvar = getFuvarIdAlapjan(id);
     if (fuvar != nullptr) {
-        if (allapot != "") fuvar->setAllapot(allapot);
+        if (allapot != -1) fuvar->setAllapot(allapot);
         if (atvevesIdeje != "") fuvar->setAtvevesIdeje(atvevesIdeje);
         if (atvevoTeljesNeve != "") fuvar->setAtvevoTeljesNeve(atvevoTeljesNeve);
     }
@@ -246,5 +242,15 @@ Fuvar* FuvarLista::getFuvarIdAlapjan(int id)
         }
     }
     return nullptr;
+}
+
+int FuvarLista::getMaiFuvarokSzama()
+{
+    return 0;
+}
+
+int FuvarLista::getMaiTeljesitettFuvarokSzama()
+{
+    return 0;
 }
 

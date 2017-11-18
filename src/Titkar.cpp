@@ -114,7 +114,7 @@ void Titkar::fuvarModositasa(FelhasznaloLista& felhLista, FuvarLista& lista)
     double tavolsag;
     int prioritas;
     string specialisIgenyek;
-    string allapot;
+    int allapot;
     string atvevesIdeje;
     string atvevoTeljesNeve;
     int ar;
@@ -146,8 +146,8 @@ void Titkar::fuvarModositasa(FelhasznaloLista& felhLista, FuvarLista& lista)
             prioritas = utils::getint();
             cout << "Adja meg az uj specialis igenyeket: ";
             getline(cin, specialisIgenyek);
-            cout << "Adja meg az uj allapotot: ";
-            getline(cin, allapot);
+            cout << "Adja meg az uj allapotot (0=feldolgozas alatt, 1=sikeres, 2=sikertelen): ";
+            allapot = utils::getint();
             cout << "Adja meg az uj atveves idejet (eeee.hh.nn): ";
             getline(cin, atvevesIdeje);
             cout << "Adja meg az uj atvevo teljes nevet: ";
@@ -158,7 +158,7 @@ void Titkar::fuvarModositasa(FelhasznaloLista& felhLista, FuvarLista& lista)
             getline(cin, megjegyzesek);
 
             if (fuvarAdatokFormaiHelyessege(true, mennyiseg, tavolsag, prioritas) &&
-                fuvarAdatokFormaiHelyessege(true, ar) &&
+                fuvarAdatokFormaiHelyessege(true, ar, allapot) &&
                 fuvarAdatokFormaiHelyessege(true, szallitasiDatum) &&
                 fuvarAdatokFormaiHelyessege(true, atvevesIdeje)) {
 
@@ -192,7 +192,7 @@ void Titkar::fuvarokKeresese(FuvarLista& lista)
     string celCim;
     string szallitasiDatum;
     int prioritas;
-    string allapot;
+    int allapot;
     string atvevesIdeje;
     string atvevoTeljesNeve;
 
@@ -212,8 +212,8 @@ void Titkar::fuvarokKeresese(FuvarLista& lista)
     getline(cin, szallitasiDatum);
     cout << "Prioritas: ";
     prioritas = utils::getint();
-    cout << "Allapot: ";
-    getline(cin, allapot);
+    cout << "Allapot (0=feldolgozas alatt, 1=sikeres, 2=sikertelen): ";
+    allapot = utils::getint();
     cout << "Atveves ideje (eeee.hh.nn): ";
     getline(cin, atvevesIdeje);
     cout << "Atvevo teljes neve: ";
@@ -239,9 +239,12 @@ bool Titkar::fuvarAdatokFormaiHelyessege(bool kihagyhato, double mennyiseg, doub
            );
 }
 
-bool Titkar::fuvarAdatokFormaiHelyessege(bool kihagyhato, int ar)
+bool Titkar::fuvarAdatokFormaiHelyessege(bool kihagyhato, int ar, int allapot)
 {
-    return ( (kihagyhato && ar == -1) || ar >= 1 );
+    return (
+            ( (kihagyhato && ar == -1) || ar >= 1 ) &&
+            ( (kihagyhato && allapot == -1) || (allapot >= 0 && allapot <= 2) )
+            );
 }
 
 bool Titkar::fuvarAdatokFormaiHelyessege(bool kihagyhato, const string& datum)

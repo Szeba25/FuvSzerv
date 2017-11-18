@@ -64,7 +64,7 @@ void Kamionos::fuvarMegtekintese(FuvarLista& lista)
 
 void Kamionos::fuvarAllapotModositasa(FuvarLista& lista)
 {
-    string allapot;
+    int allapot;
     string atvevesIdeje;
     string atvevoTeljesNeve;
 
@@ -77,14 +77,14 @@ void Kamionos::fuvarAllapotModositasa(FuvarLista& lista)
 
     if (lista.fuvarLetezik(id)) {
         cout << "[Ha az adatot nem adja meg, az nem kerul modositasra!!!]" << endl;
-        cout << "Adja meg az uj allapotot: ";
-        getline(cin, allapot);
+        cout << "Adja meg az uj allapotot (0=feldolgozas alatt, 1=sikeres, 2=sikertelen): ";
+        allapot = utils::getint();
         cout << "Adja meg az uj atveves idejet (eeee.hh.nn): ";
         getline(cin, atvevesIdeje);
         cout << "Adja meg az uj atvevo teljes nevet: ";
         getline(cin, atvevoTeljesNeve);
 
-        if (fuvarAdatokFormaiEllenorzese(atvevesIdeje)) {
+        if (fuvarAdatokFormaiEllenorzese(atvevesIdeje, allapot)) {
             lista.fuvarModositasa(id, allapot, atvevesIdeje, atvevoTeljesNeve);
         } else {
             cout << "A megadott datum helytelen formatumu!" << endl;
@@ -121,9 +121,9 @@ void Kamionos::fuvarAzonositokCelzottListazasa(FuvarLista& lista)
     lista.kiirAzonositokLeszurve(aktivFelhasznaloNev);
 }
 
-bool Kamionos::fuvarAdatokFormaiEllenorzese(const string& datum)
+bool Kamionos::fuvarAdatokFormaiEllenorzese(const string& datum, int allapot)
 {
-    return (utils::is_hundate(datum));
+    return (utils::is_hundate(datum) && allapot >= 0 && allapot <= 2);
 }
 
 

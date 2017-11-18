@@ -21,7 +21,7 @@ Fuvar::Fuvar(int id,
     tavolsag(tavolsag),
     prioritas(prioritas),
     specialisIgenyek(specialisIgenyek),
-    allapot(""),
+    allapot(0),
     atvevesIdeje(""),
     atvevoTeljesNeve(""),
     ar(0),
@@ -84,7 +84,7 @@ const string& Fuvar::getSpecialisIgenyek() const
     return specialisIgenyek;
 }
 
-const string& Fuvar::getAllapot() const
+int Fuvar::getAllapot() const
 {
     return allapot;
 }
@@ -154,7 +154,7 @@ void Fuvar::setSpecialisIgenyek(const string& specialisIgenyek)
     this->specialisIgenyek = specialisIgenyek;
 }
 
-void Fuvar::setAllapot(const string& allapot)
+void Fuvar::setAllapot(int allapot)
 {
     this->allapot = allapot;
 }

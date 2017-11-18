@@ -7,6 +7,7 @@
 #include "Fuvar.h"
 #include "AdatFile.h"
 #include "utilities.h"
+
 using namespace std;
 
 class FuvarLista
@@ -25,7 +26,7 @@ class FuvarLista
                           const string& celCim,
                           const string& szallitasiDatum,
                           int prioritas,
-                          const string& allapot,
+                          int allapot,
                           const string& atvevesIdeje,
                           const string& atvevoTeljesNeve);
 
@@ -53,14 +54,14 @@ class FuvarLista
                              double tavolsag,
                              int prioritas,
                              const string& specialisIgenyek,
-                             const string& allapot,
+                             int allapot,
                              const string& atvevesIdeje,
                              const string& atvevoTeljesNeve,
                              int ar,
                              const string& megjegyzesek);
 
         void fuvarModositasa(int id,
-                             const string& allapot,
+                             int allapot,
                              const string& atvevesIdeje,
                              const string& atvevoTeljesNeve);
 
@@ -69,6 +70,8 @@ class FuvarLista
         int genId();
         bool fuvarLetezik(int id);
         Fuvar* getFuvarIdAlapjan(int id);
+        int getMaiFuvarokSzama();
+        int getMaiTeljesitettFuvarokSzama();
     private:
         vector<Fuvar> fuvarok;
         bool matchString(const string& str1, const string& str2);
