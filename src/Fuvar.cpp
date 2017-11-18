@@ -6,7 +6,7 @@ Fuvar::Fuvar(int id,
              const string& aruMegnevezes,
              double mennyiseg,
              const string& celCim,
-             const string& szallitasiDatum,
+             const string& tervezettSzallitasiDatum,
              double tavolsag,
              int prioritas,
              const string& specialisIgenyek,
@@ -17,7 +17,7 @@ Fuvar::Fuvar(int id,
     aruMegnevezes(aruMegnevezes),
     mennyiseg(mennyiseg),
     celCim(celCim),
-    szallitasiDatum(szallitasiDatum),
+    tervezettSzallitasiDatum(tervezettSzallitasiDatum),
     tavolsag(tavolsag),
     prioritas(prioritas),
     specialisIgenyek(specialisIgenyek),
@@ -64,9 +64,9 @@ const string& Fuvar::getCelCim() const
     return celCim;
 }
 
-const string& Fuvar::getSzallitasiDatum() const
+const string& Fuvar::getTervezettSzallitasiDatum() const
 {
-    return szallitasiDatum;
+    return tervezettSzallitasiDatum;
 }
 
 double Fuvar::getTavolsag() const
@@ -134,9 +134,9 @@ void Fuvar::setCelCim(const string& celCim)
     this->celCim = celCim;
 }
 
-void Fuvar::setSzallitasiDatum(const string& szallitasiDatum)
+void Fuvar::setTervezettSzallitasiDatum(const string& tervezettSzallitasiDatum)
 {
-    this->szallitasiDatum = szallitasiDatum;
+    this->tervezettSzallitasiDatum = tervezettSzallitasiDatum;
 }
 
 void Fuvar::setTavolsag(double tavolsag)
@@ -187,7 +187,7 @@ void Fuvar::kiir() const
     cout << "Aru megnevezes: " << aruMegnevezes << endl;
     cout << "Mennyiseg: " << mennyiseg << " kg" << endl;
     cout << "Cel cim: " << celCim << endl;
-    cout << "Szallitasi datum: " << szallitasiDatum << endl;
+    cout << "Tervezett szallitasi datum: " << tervezettSzallitasiDatum << endl;
     cout << "Tavolsag: " << tavolsag << " km" << endl;
     cout << "Prioritas: " << prioritas << "/9" << endl;
     cout << "Spec. igenyek: " << specialisIgenyek << endl;

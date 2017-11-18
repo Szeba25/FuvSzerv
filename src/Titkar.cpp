@@ -53,7 +53,7 @@ void Titkar::fuvarHozzaadasa(FelhasznaloLista& felhLista, FuvarLista& lista)
     string aruMegnevezes;
     double mennyiseg;
     string celCim;
-    string szallitasiDatum;
+    string tervezettSzallitasiDatum;
     double tavolsag;
     int prioritas;
     string specialisIgenyek;
@@ -73,8 +73,8 @@ void Titkar::fuvarHozzaadasa(FelhasznaloLista& felhLista, FuvarLista& lista)
         mennyiseg = utils::getdouble();
         cout << "Adja meg a cel cimet: ";
         getline(cin, celCim);
-        cout << "Adja meg a szallitas idejet (eeee.hh.nn): ";
-        getline(cin, szallitasiDatum);
+        cout << "Adja meg a szallitas tervezett idejet (eeee.hh.nn): ";
+        getline(cin, tervezettSzallitasiDatum);
         cout << "Adja meg a tavolsagot (km): ";
         tavolsag = utils::getdouble();
         cout << "Adja meg a prioritast [1-9]: ";
@@ -85,10 +85,10 @@ void Titkar::fuvarHozzaadasa(FelhasznaloLista& felhLista, FuvarLista& lista)
         getline(cin, megjegyzesek);
 
         if (fuvarAdatokFormaiHelyessege(false, mennyiseg, tavolsag, prioritas) &&
-            fuvarAdatokFormaiHelyessege(false, szallitasiDatum)) {
+            fuvarAdatokFormaiHelyessege(false, tervezettSzallitasiDatum)) {
 
             lista.fuvarHozzaadasa(kamionosFelhasznaloNeve, feladoCim, aruMegnevezes,
-                                  mennyiseg, celCim, szallitasiDatum, tavolsag,
+                                  mennyiseg, celCim, tervezettSzallitasiDatum, tavolsag,
                                   prioritas, specialisIgenyek, megjegyzesek);
         } else {
             cout << "HIBA: A megadott adatokban formai hiba van!" << endl;
@@ -110,7 +110,7 @@ void Titkar::fuvarModositasa(FelhasznaloLista& felhLista, FuvarLista& lista)
     string aruMegnevezes;
     double mennyiseg;
     string celCim;
-    string szallitasiDatum;
+    string tervezettSzallitasiDatum;
     double tavolsag;
     int prioritas;
     string specialisIgenyek;
@@ -138,8 +138,8 @@ void Titkar::fuvarModositasa(FelhasznaloLista& felhLista, FuvarLista& lista)
             mennyiseg = utils::getdouble();
             cout << "Adja meg az uj cel cimet: ";
             getline(cin, celCim);
-            cout << "Adja meg az uj szallitas idejet (eeee.hh.nn): ";
-            getline(cin, szallitasiDatum);
+            cout << "Adja meg az uj szallitas tervezett idejet (eeee.hh.nn): ";
+            getline(cin, tervezettSzallitasiDatum);
             cout << "Adja meg az uj tavolsagot (km): ";
             tavolsag = utils::getdouble();
             cout << "Adja meg az uj prioritast ([1-9]): ";
@@ -159,12 +159,12 @@ void Titkar::fuvarModositasa(FelhasznaloLista& felhLista, FuvarLista& lista)
 
             if (fuvarAdatokFormaiHelyessege(true, mennyiseg, tavolsag, prioritas) &&
                 fuvarAdatokFormaiHelyessege(true, ar, allapot) &&
-                fuvarAdatokFormaiHelyessege(true, szallitasiDatum) &&
+                fuvarAdatokFormaiHelyessege(true, tervezettSzallitasiDatum) &&
                 fuvarAdatokFormaiHelyessege(true, atvevesIdeje)) {
 
                 lista.fuvarModositasa(id, kamionosFelhasznaloNeve, feladoCim,
                                       aruMegnevezes, mennyiseg,
-                                      celCim, szallitasiDatum, tavolsag,
+                                      celCim, tervezettSzallitasiDatum, tavolsag,
                                       prioritas, specialisIgenyek, allapot,
                                       atvevesIdeje, atvevoTeljesNeve, ar, megjegyzesek);
             } else {
@@ -190,7 +190,7 @@ void Titkar::fuvarokKeresese(FuvarLista& lista)
     string feladoCim;
     string aruMegnevezes;
     string celCim;
-    string szallitasiDatum;
+    string tervezettSzallitasiDatum;
     int prioritas;
     int allapot;
     string atvevesIdeje;
@@ -208,8 +208,8 @@ void Titkar::fuvarokKeresese(FuvarLista& lista)
     getline(cin, aruMegnevezes);
     cout << "Cel cim: ";
     getline(cin, celCim);
-    cout << "Szallitas ideje (eeee.hh.nn): ";
-    getline(cin, szallitasiDatum);
+    cout << "Szallitas tervezett ideje (eeee.hh.nn): ";
+    getline(cin, tervezettSzallitasiDatum);
     cout << "Prioritas: ";
     prioritas = utils::getint();
     cout << "Allapot (0=feldolgozas alatt, 1=sikeres, 2=sikertelen): ";
@@ -221,7 +221,7 @@ void Titkar::fuvarokKeresese(FuvarLista& lista)
     cout << endl;
     lista.kiirLeszurve(id, kamionosFelhasznaloNeve,
                        feladoCim, aruMegnevezes, celCim,
-                       szallitasiDatum, prioritas,
+                       tervezettSzallitasiDatum, prioritas,
                        allapot, atvevesIdeje, atvevoTeljesNeve);
 }
 

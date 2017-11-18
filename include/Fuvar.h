@@ -13,7 +13,7 @@ class Fuvar
               const string& aruMegnevezes,
               double mennyiseg,
               const string& celCim,
-              const string& szallitasiDatum,
+              const string& tervezettSzallitasiDatum,
               double tavolsag,
               int prioritas,
               const string& specialisIgenyek,
@@ -26,7 +26,7 @@ class Fuvar
         const string& getAruMegnevezes() const;
         double getMennyiseg() const;
         const string& getCelCim() const;
-        const string& getSzallitasiDatum() const;
+        const string& getTervezettSzallitasiDatum() const;
         double getTavolsag() const;
         int getPrioritas() const;
         const string& getSpecialisIgenyek() const;
@@ -41,7 +41,7 @@ class Fuvar
         void setAruMegnevezes(const string& aruMegnevezes);
         void setMennyiseg(double mennyiseg);
         void setCelCim(const string& celCim);
-        void setSzallitasiDatum(const string& szallitasiDatum);
+        void setTervezettSzallitasiDatum(const string& tervezettSzallitasiDatum);
         void setTavolsag(double tavolsag);
         void setPrioritas(int prioritas);
         void setSpecialisIgenyek(const string& specialisIgenyek);
@@ -59,7 +59,7 @@ class Fuvar
         string aruMegnevezes;
         double mennyiseg; // kg-ban! > 0
         string celCim;
-        string szallitasiDatum; // (eeee.hh.nn)
+        string tervezettSzallitasiDatum; // (eeee.hh.nn)
         double tavolsag; // km-ben! > 0
         int prioritas; // [1-9]
         string specialisIgenyek;

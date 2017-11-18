@@ -40,7 +40,7 @@ void FuvarLista::mentes()
         file.ujAdat(fuvar.getAruMegnevezes());
         file.ujAdat(utils::to_string(fuvar.getMennyiseg()));
         file.ujAdat(fuvar.getCelCim());
-        file.ujAdat(fuvar.getSzallitasiDatum());
+        file.ujAdat(fuvar.getTervezettSzallitasiDatum());
         file.ujAdat(utils::to_string(fuvar.getTavolsag()));
         file.ujAdat(utils::to_string(fuvar.getPrioritas()));
         file.ujAdat(fuvar.getSpecialisIgenyek());
@@ -65,7 +65,7 @@ void FuvarLista::kiirLeszurve(int keresId,
                               const string& feladoCim,
                               const string& aruMegnevezes,
                               const string& celCim,
-                              const string& szallitasiDatum,
+                              const string& tervezettSzallitasiDatum,
                               int prioritas,
                               int allapot,
                               const string& atvevesIdeje,
@@ -77,7 +77,7 @@ void FuvarLista::kiirLeszurve(int keresId,
             matchString(feladoCim, fuvar.getFeladoCim()) &&
             matchString(aruMegnevezes, fuvar.getAruMegnevezes()) &&
             matchString(celCim, fuvar.getCelCim()) &&
-            matchString(szallitasiDatum, fuvar.getSzallitasiDatum()) &&
+            matchString(tervezettSzallitasiDatum, fuvar.getTervezettSzallitasiDatum()) &&
             matchInt(prioritas, fuvar.getPrioritas()) &&
             matchInt(allapot, fuvar.getAllapot()) &&
             matchString(atvevesIdeje, fuvar.getAtvevesIdeje()) &&
@@ -139,7 +139,7 @@ void FuvarLista::fuvarHozzaadasa(const string& kamionosFelhasznaloNeve,
                                  const string& aruMegnevezes,
                                  double mennyiseg,
                                  const string& celCim,
-                                 const string& szallitasiDatum,
+                                 const string& tervezettSzallitasiDatum,
                                  double tavolsag,
                                  int prioritas,
                                  const string& specialisIgenyek,
@@ -149,7 +149,7 @@ void FuvarLista::fuvarHozzaadasa(const string& kamionosFelhasznaloNeve,
     int ar = prioritas * mennyiseg * tavolsag;
     Fuvar fuvar(id, kamionosFelhasznaloNeve,
                 feladoCim, aruMegnevezes, mennyiseg,
-                celCim, szallitasiDatum, tavolsag, prioritas, specialisIgenyek, megjegyzesek);
+                celCim, tervezettSzallitasiDatum, tavolsag, prioritas, specialisIgenyek, megjegyzesek);
     fuvar.setAr(ar);
     fuvar.setAllapot(0);
     fuvarok.push_back(fuvar);
@@ -162,7 +162,7 @@ void FuvarLista::fuvarModositasa(int id,
                                  const string& aruMegnevezes,
                                  double mennyiseg,
                                  const string& celCim,
-                                 const string& szallitasiDatum,
+                                 const string& tervezettSzallitasiDatum,
                                  double tavolsag,
                                  int prioritas,
                                  const string& specialisIgenyek,
@@ -178,7 +178,7 @@ void FuvarLista::fuvarModositasa(int id,
     if (aruMegnevezes != "") fuvar->setAruMegnevezes(aruMegnevezes);
     if (mennyiseg != -1) fuvar->setMennyiseg(mennyiseg);
     if (celCim != "") fuvar->setCelCim(celCim);
-    if (szallitasiDatum != "") fuvar->setSzallitasiDatum(szallitasiDatum);
+    if (tervezettSzallitasiDatum != "") fuvar->setTervezettSzallitasiDatum(tervezettSzallitasiDatum);
     if (tavolsag != -1) fuvar->setTavolsag(tavolsag);
     if (prioritas != -1) fuvar->setPrioritas(prioritas);
     if (specialisIgenyek != "") fuvar->setSpecialisIgenyek(specialisIgenyek);
@@ -249,7 +249,7 @@ int FuvarLista::getMaiFuvarokSzama()
     int sum = 0;
     string date = utils::getdate();
     for (Fuvar& f : fuvarok) {
-        if (f.getSzallitasiDatum() == date) {
+        if (f.getTervezettSzallitasiDatum() == date) {
             sum++;
         }
     }
@@ -261,7 +261,7 @@ int FuvarLista::getMaiSikeresFuvarokSzama()
     int sum = 0;
     string date = utils::getdate();
     for (Fuvar& f : fuvarok) {
-        if (f.getSzallitasiDatum() == date && f.getAllapot() == 1) {
+        if (f.getAtvevesIdeje() == date && f.getAllapot() == 1) {
             sum++;
         }
     }
