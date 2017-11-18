@@ -65,32 +65,61 @@ void FuvarLista::kiir()
 }
 
 void FuvarLista::kiirLeszurve(int keresId,
-                              const string& keresKamionosFelhasznaloNeve,
-                              const string& keresHonnan,
-                              const string& keresAruMegnevezes,
-                              const string& keresCel,
-                              const string& keresMikor,
-                              int keresPrioritas,
-                              const string& keresAllapot,
-                              const string& keresAtvevesIdeje,
-                              const string& keresAtvevoTeljesNeve)
+                              const string& kamionosFelhasznaloNeve,
+                              const string& honnan,
+                              const string& aruMegnevezes,
+                              const string& cel,
+                              const string& mikor,
+                              int prioritas,
+                              const string& allapot,
+                              const string& atvevesIdeje,
+                              const string& atvevoTeljesNeve)
 {
     for (Fuvar& fuvar : fuvarok) {
         if (matchInt(keresId, fuvar.getId()) &&
-            matchString(keresKamionosFelhasznaloNeve, fuvar.getKamionosFelhasznaloNeve()) &&
-            matchString(keresHonnan, fuvar.getHonnan()) &&
-            matchString(keresAruMegnevezes, fuvar.getAruMegnevezes()) &&
-            matchString(keresCel, fuvar.getCel()) &&
-            matchString(keresMikor, fuvar.getMikor()) &&
-            matchInt(keresPrioritas, fuvar.getPrioritas()) &&
-            matchString(keresAllapot, fuvar.getAllapot()) &&
-            matchString(keresAtvevesIdeje, fuvar.getAtvevesIdeje()) &&
-            matchString(keresAtvevoTeljesNeve, fuvar.getAtvevoTeljesNeve()))
+            matchString(kamionosFelhasznaloNeve, fuvar.getKamionosFelhasznaloNeve()) &&
+            matchString(honnan, fuvar.getHonnan()) &&
+            matchString(aruMegnevezes, fuvar.getAruMegnevezes()) &&
+            matchString(cel, fuvar.getCel()) &&
+            matchString(mikor, fuvar.getMikor()) &&
+            matchInt(prioritas, fuvar.getPrioritas()) &&
+            matchString(allapot, fuvar.getAllapot()) &&
+            matchString(atvevesIdeje, fuvar.getAtvevesIdeje()) &&
+            matchString(atvevoTeljesNeve, fuvar.getAtvevoTeljesNeve()))
         {
             fuvar.kiir();
         }
     }
 }
+
+void FuvarLista::kiirLeszurve(const string& kamionosFelhasznaloNeve)
+{
+    for (Fuvar& fuvar : fuvarok) {
+        if (fuvar.getKamionosFelhasznaloNeve() == kamionosFelhasznaloNeve) {
+            fuvar.kiir();
+        }
+    }
+}
+
+void FuvarLista::kiirAzonositokLeszurve(const string& kamionosFelhasznaloNeve)
+{
+    cout << "Lehetseges azonositok:" << endl;
+    int i = 0;
+    for (Fuvar& fuvar : fuvarok) {
+        if (fuvar.getKamionosFelhasznaloNeve() == kamionosFelhasznaloNeve) {
+            cout << fuvar.getId();
+            if (i < 12) {
+                cout << ", ";
+            } else {
+                i = 0;
+                cout << endl;
+            }
+            i++;
+        }
+    }
+    cout << endl;
+}
+
 
 bool FuvarLista::matchString(const string& str1, const string& str2)
 {
@@ -165,6 +194,28 @@ void FuvarLista::fuvarModositasa(int id,
 
     mentes();
 }
+
+void FuvarLista::fuvarModositasa(int id, const string& allapot, const string& atvevesIdeje,
+                                 const string& atvevoTeljesNeve)
+{
+    Fuvar* fuvar = getFuvarIdAlapjan(id);
+    if (fuvar != nullptr) {
+        if (allapot != "") fuvar->setAllapot(allapot);
+        if (atvevesIdeje != "") fuvar->setAtvevesIdeje(atvevesIdeje);
+        if (atvevoTeljesNeve != "") fuvar->setAtvevoTeljesNeve(atvevoTeljesNeve);
+    }
+    mentes();
+}
+
+void FuvarLista::fuvarModositasa(int id, const string& megjegyzesek)
+{
+    Fuvar* fuvar = getFuvarIdAlapjan(id);
+    if (fuvar != nullptr) {
+        if (megjegyzesek != "") fuvar->setMegjegyzesek(megjegyzesek);
+    }
+    mentes();
+}
+
 
 int FuvarLista::genId()
 {

@@ -19,15 +19,18 @@ class FuvarLista
         void mentes();
         void kiir();
         void kiirLeszurve(int keresId,
-                          const string& keresKamionosFelhasznaloNeve,
-                          const string& keresHonnan,
-                          const string& keresAruMegnevezes,
-                          const string& keresCel,
-                          const string& keresMikor,
-                          int keresPrioritas,
-                          const string& keresAllapot,
-                          const string& keresAtvevesIdeje,
-                          const string& keresAtvevoTeljesNeve);
+                          const string& kamionosFelhasznaloNeve,
+                          const string& honnan,
+                          const string& aruMegnevezes,
+                          const string& cel,
+                          const string& mikor,
+                          int prioritas,
+                          const string& allapot,
+                          const string& atvevesIdeje,
+                          const string& atvevoTeljesNeve);
+
+        void kiirLeszurve(const string& kamionosFelhasznaloNeve);
+        void kiirAzonositokLeszurve(const string& kamionosFelhasznaloNeve);
 
         void fuvarHozzaadasa(const string& kamionosFelhasznaloNeve,
                              const string& honnan,
@@ -55,11 +58,17 @@ class FuvarLista
                              const string& atvevoTeljesNeve,
                              int ar,
                              const string& megjegyzesek);
+        void fuvarModositasa(int id,
+                             const string& allapot,
+                             const string& atvevesIdeje,
+                             const string& atvevoTeljesNeve);
+        void fuvarModositasa(int id,
+                             const string& megjegyzesek);
         int genId();
         bool fuvarLetezik(int id);
+        Fuvar* getFuvarIdAlapjan(int id);
     private:
         vector<Fuvar> fuvarok;
-        Fuvar* getFuvarIdAlapjan(int id);
         bool matchString(const string& str1, const string& str2);
         bool matchInt(int i, int j);
 };
