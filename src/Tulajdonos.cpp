@@ -1,7 +1,7 @@
 #include "Tulajdonos.h"
 
-Tulajdonos::Tulajdonos(const string& felhasznaloNev, const string& vezetekNev, const string& keresztNev) :
-    Felhasznalo(felhasznaloNev, vezetekNev, keresztNev)
+Tulajdonos::Tulajdonos(const string& aktivFelhasznaloNev, const string& aktivVezetekNev, const string& aktivKeresztNev) :
+    AktivFelhasznalo(aktivFelhasznaloNev, aktivVezetekNev, aktivKeresztNev)
 {}
 
 Tulajdonos::~Tulajdonos()

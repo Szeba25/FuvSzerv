@@ -1,30 +1,30 @@
 #ifndef ADMIN_H
 #define ADMIN_H
 
-#include "Felhasznalo.h"
+#include "AktivFelhasznalo.h"
 
-class Admin : public Felhasznalo
+class Admin : public AktivFelhasznalo
 {
     public:
-        Admin(const string& felhasznaloNev, const string& vezetekNev, const string& keresztNev);
+        Admin(const string& aktivFelhasznaloNev, const string& aktivVezetekNev, const string& aktivKeresztNev);
         virtual ~Admin();
 
         virtual void menuMutat();
         virtual bool parancsFeldolgoz(int parancs, Adatok& adatok);
     private:
         // USE CASES!
-        void felhasznaloFelvetele(FelhasznaloLista& lista); // A1
-        void felhasznalokListazasa(FelhasznaloLista& lista); // A2
-        void felhasznaloTorlese(FelhasznaloLista& lista); // A3
-        void felhasznaloModositasa(FelhasznaloLista& lista); // A4
-        void cegFelvetele(CegLista& lista); // A5
-        void cegTorlese(CegLista& lista); // A6
-        void cegModositasa(CegLista& lista); // A7
+        void cegFelvetele(CegLista& lista); // A1
+        void cegTorlese(CegLista& lista); // A2
+        void cegModositasa(CegLista& lista); // A3
+        void felhasznaloFelvetele(FelhasznaloLista& lista); // A4
+        void felhasznalokListazasa(FelhasznaloLista& lista); // A5
+        void felhasznaloTorlese(FelhasznaloLista& lista); // A6
+        void felhasznaloModositasa(FelhasznaloLista& lista); // A7
         void cegekListazasa(CegLista& lista); // TA1
 
         // formai ellenorzesek
-        bool felhasznaloAdataiFormaiEllenorzes(int tipus);
-        bool cegAdataiFormaiEllenorzes(int meret);
+        bool felhasznaloAdataiFormaiEllenorzes(bool kihagyhato, int tipus);
+        bool cegAdataiFormaiEllenorzes(bool kihagyhato, int meret);
 };
 
 #endif // ADMIN_H

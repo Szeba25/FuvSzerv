@@ -13,6 +13,7 @@ double to_double(const string& str);
 double getdouble();
 int to_int(const string& str);
 int getint();
+bool is_hundate(const string& str);
 
 }
 

@@ -18,7 +18,7 @@ bool Menu::mutat(Adatok& adatok)
     bool kilepes = false;
 
     if (bejelentkezve) {
-        cout << "Bejelentkezve mint: " << felhasznalo->getFelhasznaloNev() << endl;
+        cout << "Bejelentkezve mint: " << felhasznalo->getAktivFelhasznaloNev() << endl;
         felhasznalo->menuMutat();
         cin >> parancs;
         kilepes = felhasznalo->parancsFeldolgoz(parancs, adatok);

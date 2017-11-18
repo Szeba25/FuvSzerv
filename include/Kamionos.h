@@ -1,24 +1,25 @@
 #ifndef KAMIONOS_H
 #define KAMIONOS_H
 
-#include "Felhasznalo.h"
+#include "AktivFelhasznalo.h"
 
-class Kamionos : public Felhasznalo
+class Kamionos : public AktivFelhasznalo
 {
     public:
-        Kamionos(const string& felhasznaloNev, const string& vezetekNev, const string& keresztNev);
+        Kamionos(const string& aktivFelhasznaloNev, const string& aktivVezetekNev, const string& aktivKeresztNev);
         virtual ~Kamionos();
 
         virtual void menuMutat();
         virtual bool parancsFeldolgoz(int parancs, Adatok& adatok);
     private:
-        void fuvarokCelzottListazasa(FuvarLista& lista);
-        void fuvarMegtekintese(FuvarLista& lista);
-        void fuvarAllapotModositasa(FuvarLista& lista);
-        void fuvarMegjegyzesekModositasa(FuvarLista& lista);
+        // USE CASES
+        void fuvarokCelzottListazasa(FuvarLista& lista); // K1
+        void fuvarMegtekintese(FuvarLista& lista); // K3
+        void fuvarAllapotModositasa(FuvarLista& lista); // K4
+        void fuvarMegjegyzesekModositasa(FuvarLista& lista); // K5
 
-        // include
-        void fuvarAzonositokCelzottListazasa(FuvarLista& lista);
+        // INCLUDE
+        void fuvarAzonositokCelzottListazasa(FuvarLista& lista); // K2
 };
 
 #endif // KAMIONOS_H

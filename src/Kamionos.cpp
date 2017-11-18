@@ -1,7 +1,7 @@
 #include "Kamionos.h"
 
-Kamionos::Kamionos(const string& felhasznaloNev, const string& vezetekNev, const string& keresztNev) :
-    Felhasznalo(felhasznaloNev, vezetekNev, keresztNev)
+Kamionos::Kamionos(const string& aktivFelhasznaloNev, const string& aktivVezetekNev, const string& aktivKeresztNev) :
+    AktivFelhasznalo(aktivFelhasznaloNev, aktivVezetekNev, aktivKeresztNev)
 {}
 
 Kamionos::~Kamionos()
@@ -41,13 +41,14 @@ bool Kamionos::parancsFeldolgoz(int parancs, Adatok& adatok)
 
 void Kamionos::fuvarokCelzottListazasa(FuvarLista& lista)
 {
-    lista.kiirLeszurve(felhasznaloNev);
+    lista.kiirLeszurve(aktivFelhasznaloNev);
 }
 
 void Kamionos::fuvarMegtekintese(FuvarLista& lista)
 {
     int id;
 
+    // INCLUDE
     fuvarAzonositokCelzottListazasa(lista);
 
     cin.ignore();
@@ -63,7 +64,6 @@ void Kamionos::fuvarMegtekintese(FuvarLista& lista)
 
 void Kamionos::fuvarAllapotModositasa(FuvarLista& lista)
 {
-    int id;
     string allapot;
     string atvevesIdeje;
     string atvevoTeljesNeve;
@@ -72,9 +72,11 @@ void Kamionos::fuvarAllapotModositasa(FuvarLista& lista)
 
     cin.ignore();
     cout << "Adja meg a fuvar azonositot: ";
+    int id;
     id = utils::getint();
 
     if (lista.fuvarLetezik(id)) {
+        cout << "[Ha az adatot nem adja meg, az nem kerul modositasra!!!]" << endl;
         cout << "Adja meg az uj allapotot: ";
         getline(cin, allapot);
         cout << "Adja meg az uj atveves idejet: ";
@@ -99,6 +101,7 @@ void Kamionos::fuvarMegjegyzesekModositasa(FuvarLista& lista)
     id = utils::getint();
 
     if (lista.fuvarLetezik(id)) {
+        cout << "[Ha az adatot nem adja meg, az nem kerul modositasra!!!]" << endl;
         cout << "Adja meg az uj megjegyzest: ";
         getline(cin, megjegyzesek);
         lista.fuvarModositasa(id, megjegyzesek);
@@ -107,8 +110,7 @@ void Kamionos::fuvarMegjegyzesekModositasa(FuvarLista& lista)
     }
 }
 
-
 void Kamionos::fuvarAzonositokCelzottListazasa(FuvarLista& lista)
 {
-    lista.kiirAzonositokLeszurve(felhasznaloNev);
+    lista.kiirAzonositokLeszurve(aktivFelhasznaloNev);
 }

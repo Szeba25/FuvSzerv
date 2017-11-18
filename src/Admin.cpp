@@ -1,7 +1,7 @@
 #include "Admin.h"
 
-Admin::Admin(const string& felhasznaloNev, const string& vezetekNev, const string& keresztNev) :
-    Felhasznalo(felhasznaloNev, vezetekNev, keresztNev)
+Admin::Admin(const string& aktivFelhasznaloNev, const string& aktivVezetekNev, const string& aktivKeresztNev) :
+    AktivFelhasznalo(aktivFelhasznaloNev, aktivVezetekNev, aktivKeresztNev)
 {}
 
 Admin::~Admin()
@@ -55,91 +55,6 @@ bool Admin::parancsFeldolgoz(int parancs, Adatok& adatok)
     return kilepes;
 }
 
-void Admin::felhasznaloFelvetele(FelhasznaloLista& lista)
-{
-    string ujFelhasznaloNev;
-    string ujJelszo;
-    string ujVezetekNev;
-    string ujKeresztNev;
-    int ujTipus;
-
-    cin.ignore();
-    cout << "Adja meg a felhasznalonevet: ";
-    getline(cin, ujFelhasznaloNev);
-    if (!lista.felhasznaloNevLetezik(ujFelhasznaloNev)) {
-        cout << "Adjon meg egy jelszavat: ";
-        getline(cin, ujJelszo);
-        cout << "Adja meg a vezeteknevet: ";
-        getline(cin, ujVezetekNev);
-        cout << "Adja meg a keresztnevet: ";
-        getline(cin, ujKeresztNev);
-        cout << "Adja meg a felhasznalo tipusat (0=tulajdonos, 1=admin, 2=titkar, 3=kamionos)\n:";
-        ujTipus = utils::getint();
-
-        if (felhasznaloAdataiFormaiEllenorzes(ujTipus)) {
-            lista.ujFelhasznalo(ujFelhasznaloNev,
-                               ujJelszo,
-                               ujVezetekNev,
-                               ujKeresztNev,
-                               ujTipus);
-        } else {
-            cout << "HIBA: A megadott tipus nem megengedett!" << endl;
-        }
-    } else {
-        cout << "HIBA: A felhasznalonev mar letezik!" << endl;
-    }
-}
-
-void Admin::felhasznalokListazasa(FelhasznaloLista& lista)
-{
-    lista.kiir();
-}
-
-void Admin::felhasznaloTorlese(FelhasznaloLista& lista)
-{
-    string delFelhasznaloNev;
-
-    cin.ignore();
-    cout << "Adjon meg egy felhasznalo nevet: ";
-    getline(cin, delFelhasznaloNev);
-    if (lista.felhasznaloNevLetezik(delFelhasznaloNev)) {
-        lista.felhasznaloTorlese(delFelhasznaloNev);
-    } else {
-        cout << "HIBA: A felhasznalonev nem letezik!" << endl;
-    }
-}
-
-void Admin::felhasznaloModositasa(FelhasznaloLista& lista)
-{
-    string modFelhasznaloNev;
-    string ujJelszo;
-    string ujVezetekNev;
-    string ujKeresztNev;
-    int ujTipus;
-
-    cin.ignore();
-    cout << "Adjon meg egy felhasznalo nevet: ";
-    getline(cin, modFelhasznaloNev);
-    if (lista.felhasznaloNevLetezik(modFelhasznaloNev)) {
-        cout << "Adjon meg egy uj jelszot (\"\" = nem valtozik): ";
-        getline(cin, ujJelszo);
-        cout << "Adjon meg egy uj vezeteknevet (\"\" = nem valtozik): ";
-        getline(cin, ujVezetekNev);
-        cout << "Adjon meg egy uj keresztnevet (\"\" = nem valtozik): ";
-        getline(cin, ujKeresztNev);
-        cout << "Adjon meg egy uj tipust (\"\"=nem valtozik, 0=tulajdonos, 1=admin, 2=titkar, 3=kamionos)\n:";
-        ujTipus = utils::getint();
-
-        if (ujTipus == -1 || felhasznaloAdataiFormaiEllenorzes(ujTipus)) {
-            lista.felhasznaloModositasa(modFelhasznaloNev, ujJelszo, ujVezetekNev, ujKeresztNev, ujTipus);
-        } else {
-            cout << "HIBA: A megadott tipus nem megengedett!" << endl;
-        }
-    } else {
-        cout << "HIBA: A felhasznalonev nem letezik!" << endl;
-    }
-}
-
 void Admin::cegFelvetele(CegLista& lista)
 {
     string nev;
@@ -157,7 +72,7 @@ void Admin::cegFelvetele(CegLista& lista)
     cout << "Adja meg a ceg meretet [1-9]: ";
     meret = utils::getint();
 
-    if (cegAdataiFormaiEllenorzes(meret)) {
+    if (cegAdataiFormaiEllenorzes(false, meret)) {
         lista.ujCeg(nev, cim, tipus, meret);
     } else {
         cout << "HIBA: A megadott meret nem megengedett!" << endl;
@@ -179,28 +94,29 @@ void Admin::cegTorlese(CegLista& lista)
 
 void Admin::cegModositasa(CegLista& lista)
 {
-    string ujNev;
-    string ujCim;
-    string ujTipus;
-    int ujMeret;
+    string nev;
+    string cim;
+    string tipus;
+    int meret;
 
     cin.ignore();
-    cout << "Adja meg a modositani kivant ceg azonositojat (szam): ";
+    cout << "Adja meg a modositani kivant ceg azonositojat: ";
     int id;
     id = utils::getint();
 
     if (lista.cegLetezik(id)) {
-        cout << "Adja meg az uj ceg nevet (\"\" = nem valtozik): ";
-        getline(cin, ujNev);
-        cout << "Adja meg az uj ceg cimet (\"\" = nem valtozik): ";
-        getline(cin, ujCim);
-        cout << "Adja meg az uj ceg tipusat (\"\" = nem valtozik): ";
-        getline(cin, ujTipus);
-        cout << "Adja meg az uj ceg meretet ([1-9], \"\" = nem valtozik!): ";
-        ujMeret = utils::getint();
+        cout << "[Ha az adatot nem adja meg, az nem kerul modositasra!!!]" << endl;
+        cout << "Adja meg az uj ceg nevet: ";
+        getline(cin, nev);
+        cout << "Adja meg az uj ceg cimet: ";
+        getline(cin, cim);
+        cout << "Adja meg az uj ceg tipusat: ";
+        getline(cin, tipus);
+        cout << "Adja meg az uj ceg meretet [1-9]: ";
+        meret = utils::getint();
 
-        if (ujMeret == -1 || cegAdataiFormaiEllenorzes(ujMeret)) {
-            lista.cegModositasa(id, ujNev, ujCim, ujTipus, ujMeret);
+        if (cegAdataiFormaiEllenorzes(true, meret)) {
+            lista.cegModositasa(id, nev, cim, tipus, meret);
         } else {
             cout << "HIBA: A megadott meret nem megengedett!" << endl;
         }
@@ -209,18 +125,105 @@ void Admin::cegModositasa(CegLista& lista)
     }
 }
 
+void Admin::felhasznaloFelvetele(FelhasznaloLista& lista)
+{
+    string felhasznaloNev;
+    string jelszo;
+    string vezetekNev;
+    string keresztNev;
+    int tipus;
+
+    cin.ignore();
+    cout << "Adja meg a felhasznalonevet: ";
+    getline(cin, felhasznaloNev);
+    if (!lista.felhasznaloNevLetezik(felhasznaloNev)) {
+        cout << "Adjon meg egy jelszavat: ";
+        getline(cin, jelszo);
+        cout << "Adja meg a vezeteknevet: ";
+        getline(cin, vezetekNev);
+        cout << "Adja meg a keresztnevet: ";
+        getline(cin, keresztNev);
+        cout << "Adja meg a felhasznalo tipusat (0=tulajdonos, 1=admin, 2=titkar, 3=kamionos)\n:";
+        tipus = utils::getint();
+
+        if (felhasznaloAdataiFormaiEllenorzes(false, tipus)) {
+            lista.ujFelhasznalo(felhasznaloNev,
+                               jelszo,
+                               vezetekNev,
+                               keresztNev,
+                               tipus);
+        } else {
+            cout << "HIBA: A megadott tipus nem megengedett!" << endl;
+        }
+    } else {
+        cout << "HIBA: A felhasznalonev mar letezik!" << endl;
+    }
+}
+
+void Admin::felhasznalokListazasa(FelhasznaloLista& lista)
+{
+    lista.kiir();
+}
+
+void Admin::felhasznaloTorlese(FelhasznaloLista& lista)
+{
+    string felhasznaloNev;
+
+    cin.ignore();
+    cout << "Adjon meg egy felhasznalo nevet: ";
+    getline(cin, felhasznaloNev);
+    if (lista.felhasznaloNevLetezik(felhasznaloNev)) {
+        lista.felhasznaloTorlese(felhasznaloNev);
+    } else {
+        cout << "HIBA: A felhasznalonev nem letezik!" << endl;
+    }
+}
+
+void Admin::felhasznaloModositasa(FelhasznaloLista& lista)
+{
+    string felhasznaloNev;
+    string jelszo;
+    string vezetekNev;
+    string keresztNev;
+    int tipus;
+
+    cin.ignore();
+    cout << "Adjon meg egy felhasznalo nevet: ";
+    getline(cin, felhasznaloNev);
+
+    if (lista.felhasznaloNevLetezik(felhasznaloNev)) {
+        cout << "[Ha az adatot nem adja meg, az nem kerul modositasra!!!]" << endl;
+        cout << "Adjon meg egy uj jelszot: ";
+        getline(cin, jelszo);
+        cout << "Adjon meg egy uj vezeteknevet: ";
+        getline(cin, vezetekNev);
+        cout << "Adjon meg egy uj keresztnevet: ";
+        getline(cin, keresztNev);
+        cout << "Adjon meg egy uj tipust (0=tulajdonos, 1=admin, 2=titkar, 3=kamionos)\n:";
+        tipus = utils::getint();
+
+        if (felhasznaloAdataiFormaiEllenorzes(true, tipus)) {
+            lista.felhasznaloModositasa(felhasznaloNev, jelszo, vezetekNev, keresztNev, tipus);
+        } else {
+            cout << "HIBA: A megadott tipus nem megengedett!" << endl;
+        }
+    } else {
+        cout << "HIBA: A felhasznalonev nem letezik!" << endl;
+    }
+}
+
 void Admin::cegekListazasa(CegLista& lista)
 {
     lista.kiir();
 }
 
-bool Admin::felhasznaloAdataiFormaiEllenorzes(int tipus)
+bool Admin::felhasznaloAdataiFormaiEllenorzes(bool kihagyhato, int tipus)
 {
-    return (tipus >= 0 && tipus <= 3);
+    return ( (kihagyhato && tipus == -1) || (tipus >= 0 && tipus <= 3) );
 }
 
-bool Admin::cegAdataiFormaiEllenorzes(int meret)
+bool Admin::cegAdataiFormaiEllenorzes(bool kihagyhato, int meret)
 {
-    return (meret >= 1 && meret <= 9);
+    return ( (kihagyhato && meret == -1) || (meret >= 1 && meret <= 9) );
 }
 

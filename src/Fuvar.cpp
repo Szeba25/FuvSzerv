@@ -2,22 +2,22 @@
 
 Fuvar::Fuvar(int id,
              const string& kamionosFelhasznaloNeve,
-             const string& honnan,
+             const string& feladoCim,
              const string& aruMegnevezes,
              double mennyiseg,
-             const string& cel,
-             const string& mikor,
+             const string& celCim,
+             const string& szallitasiDatum,
              double tavolsag,
              int prioritas,
              const string& specialisIgenyek,
              const string& megjegyzesek) :
     id(id),
     kamionosFelhasznaloNeve(kamionosFelhasznaloNeve),
-    honnan(honnan),
+    feladoCim(feladoCim),
     aruMegnevezes(aruMegnevezes),
     mennyiseg(mennyiseg),
-    cel(cel),
-    mikor(mikor),
+    celCim(celCim),
+    szallitasiDatum(szallitasiDatum),
     tavolsag(tavolsag),
     prioritas(prioritas),
     specialisIgenyek(specialisIgenyek),
@@ -44,9 +44,9 @@ const string& Fuvar::getKamionosFelhasznaloNeve() const
     return kamionosFelhasznaloNeve;
 }
 
-const string& Fuvar::getHonnan() const
+const string& Fuvar::getFeladoCim() const
 {
-    return honnan;
+    return feladoCim;
 }
 
 const string& Fuvar::getAruMegnevezes() const
@@ -59,14 +59,14 @@ double Fuvar::getMennyiseg() const
     return mennyiseg;
 }
 
-const string& Fuvar::getCel() const
+const string& Fuvar::getCelCim() const
 {
-    return cel;
+    return celCim;
 }
 
-const string& Fuvar::getMikor() const
+const string& Fuvar::getSzallitasiDatum() const
 {
-    return mikor;
+    return szallitasiDatum;
 }
 
 double Fuvar::getTavolsag() const
@@ -114,9 +114,9 @@ void Fuvar::setKamionosFelhasznaloNeve(const string& kamionosFelhasznaloNeve)
     this->kamionosFelhasznaloNeve = kamionosFelhasznaloNeve;
 }
 
-void Fuvar::setHonnan(const string& honnan)
+void Fuvar::setFeladoCim(const string& feladoCim)
 {
-    this->honnan = honnan;
+    this->feladoCim = feladoCim;
 }
 
 void Fuvar::setAruMegnevezes(const string& aruMegnevezes)
@@ -129,14 +129,14 @@ void Fuvar::setMennyiseg(double mennyiseg)
     this->mennyiseg = mennyiseg;
 }
 
-void Fuvar::setCel(const string& cel)
+void Fuvar::setCelCim(const string& celCim)
 {
-    this->cel = cel;
+    this->celCim = celCim;
 }
 
-void Fuvar::setMikor(const string& mikor)
+void Fuvar::setSzallitasiDatum(const string& szallitasiDatum)
 {
-    this->mikor = mikor;
+    this->szallitasiDatum = szallitasiDatum;
 }
 
 void Fuvar::setTavolsag(double tavolsag)
@@ -183,11 +183,11 @@ void Fuvar::kiir() const
 {
     cout << "> ID: " << id << endl;
     cout << "Kamionos: " << kamionosFelhasznaloNeve << endl;
-    cout << "Honnan: " << honnan << endl;
+    cout << "Felado cime: " << feladoCim << endl;
     cout << "Aru megnevezes: " << aruMegnevezes << endl;
     cout << "Mennyiseg: " << mennyiseg << " kg" << endl;
-    cout << "Cel: " << cel << endl;
-    cout << "Mikor: " << mikor << endl;
+    cout << "Cel cim: " << celCim << endl;
+    cout << "Szallitasi datum: " << szallitasiDatum << endl;
     cout << "Tavolsag: " << tavolsag << " km" << endl;
     cout << "Prioritas: " << prioritas << "/9" << endl;
     cout << "Spec. igenyek: " << specialisIgenyek << endl;

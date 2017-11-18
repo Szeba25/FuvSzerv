@@ -1,12 +1,12 @@
 #ifndef TULAJDONOS_H
 #define TULAJDONOS_H
 
-#include "Felhasznalo.h"
+#include "AktivFelhasznalo.h"
 
-class Tulajdonos : public Felhasznalo
+class Tulajdonos : public AktivFelhasznalo
 {
     public:
-        Tulajdonos(const string& felhasznaloNev, const string& vezetekNev, const string& keresztNev);
+        Tulajdonos(const string& aktivFelhasznaloNev, const string& aktivVezetekNev, const string& aktivKeresztNev);
         virtual ~Tulajdonos();
 
         virtual void menuMutat();

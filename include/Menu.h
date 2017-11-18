@@ -3,7 +3,7 @@
 
 #include <iostream>
 #include "Adatok.h"
-#include "Felhasznalo.h"
+#include "AktivFelhasznalo.h"
 #include "Tulajdonos.h"
 #include "Admin.h"
 #include "Titkar.h"
@@ -20,7 +20,7 @@ class Menu
 
     private:
         bool bejelentkezve;
-        Felhasznalo* felhasznalo;
+        AktivFelhasznalo* felhasznalo;
 
         bool bejelentkezes(const string& felhasznaloNev, const string& jelszo, Adatok& adatok);
 };

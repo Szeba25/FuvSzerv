@@ -40,11 +40,11 @@ void FuvarLista::mentes()
         file.ujSor();
         file.ujAdat(utils::to_string(fuvar.getId()));
         file.ujAdat(fuvar.getKamionosFelhasznaloNeve());
-        file.ujAdat(fuvar.getHonnan());
+        file.ujAdat(fuvar.getFeladoCim());
         file.ujAdat(fuvar.getAruMegnevezes());
         file.ujAdat(utils::to_string(fuvar.getMennyiseg()));
-        file.ujAdat(fuvar.getCel());
-        file.ujAdat(fuvar.getMikor());
+        file.ujAdat(fuvar.getCelCim());
+        file.ujAdat(fuvar.getSzallitasiDatum());
         file.ujAdat(utils::to_string(fuvar.getTavolsag()));
         file.ujAdat(utils::to_string(fuvar.getPrioritas()));
         file.ujAdat(fuvar.getSpecialisIgenyek());
@@ -66,10 +66,10 @@ void FuvarLista::kiir()
 
 void FuvarLista::kiirLeszurve(int keresId,
                               const string& kamionosFelhasznaloNeve,
-                              const string& honnan,
+                              const string& feladoCim,
                               const string& aruMegnevezes,
-                              const string& cel,
-                              const string& mikor,
+                              const string& celCim,
+                              const string& szallitasiDatum,
                               int prioritas,
                               const string& allapot,
                               const string& atvevesIdeje,
@@ -78,10 +78,10 @@ void FuvarLista::kiirLeszurve(int keresId,
     for (Fuvar& fuvar : fuvarok) {
         if (matchInt(keresId, fuvar.getId()) &&
             matchString(kamionosFelhasznaloNeve, fuvar.getKamionosFelhasznaloNeve()) &&
-            matchString(honnan, fuvar.getHonnan()) &&
+            matchString(feladoCim, fuvar.getFeladoCim()) &&
             matchString(aruMegnevezes, fuvar.getAruMegnevezes()) &&
-            matchString(cel, fuvar.getCel()) &&
-            matchString(mikor, fuvar.getMikor()) &&
+            matchString(celCim, fuvar.getCelCim()) &&
+            matchString(szallitasiDatum, fuvar.getSzallitasiDatum()) &&
             matchInt(prioritas, fuvar.getPrioritas()) &&
             matchString(allapot, fuvar.getAllapot()) &&
             matchString(atvevesIdeje, fuvar.getAtvevesIdeje()) &&
@@ -139,11 +139,11 @@ bool FuvarLista::matchInt(int i, int j)
 
 
 void FuvarLista::fuvarHozzaadasa(const string& kamionosFelhasznaloNeve,
-                                 const string& honnan,
+                                 const string& feladoCim,
                                  const string& aruMegnevezes,
                                  double mennyiseg,
-                                 const string& cel,
-                                 const string& mikor,
+                                 const string& celCim,
+                                 const string& szallitasiDatum,
                                  double tavolsag,
                                  int prioritas,
                                  const string& specialisIgenyek,
@@ -152,8 +152,8 @@ void FuvarLista::fuvarHozzaadasa(const string& kamionosFelhasznaloNeve,
     int id = genId();
     int ar = prioritas * mennyiseg * tavolsag;
     Fuvar fuvar(id, kamionosFelhasznaloNeve,
-                honnan, aruMegnevezes, mennyiseg,
-                cel, mikor, tavolsag, prioritas, specialisIgenyek, megjegyzesek);
+                feladoCim, aruMegnevezes, mennyiseg,
+                celCim, szallitasiDatum, tavolsag, prioritas, specialisIgenyek, megjegyzesek);
     fuvar.setAr(ar);
     fuvar.setAllapot("feldolgozas alatt");
     fuvarok.push_back(fuvar);
@@ -162,11 +162,11 @@ void FuvarLista::fuvarHozzaadasa(const string& kamionosFelhasznaloNeve,
 
 void FuvarLista::fuvarModositasa(int id,
                                  const string& kamionosFelhasznaloNeve,
-                                 const string& honnan,
+                                 const string& feladoCim,
                                  const string& aruMegnevezes,
                                  double mennyiseg,
-                                 const string& cel,
-                                 const string& mikor,
+                                 const string& celCim,
+                                 const string& szallitasiDatum,
                                  double tavolsag,
                                  int prioritas,
                                  const string& specialisIgenyek,
@@ -178,11 +178,11 @@ void FuvarLista::fuvarModositasa(int id,
 {
     Fuvar* fuvar = getFuvarIdAlapjan(id);
     if (kamionosFelhasznaloNeve != "") fuvar->setKamionosFelhasznaloNeve(kamionosFelhasznaloNeve);
-    if (honnan != "") fuvar->setHonnan(honnan);
+    if (feladoCim != "") fuvar->setFeladoCim(feladoCim);
     if (aruMegnevezes != "") fuvar->setAruMegnevezes(aruMegnevezes);
     if (mennyiseg != -1) fuvar->setMennyiseg(mennyiseg);
-    if (cel != "") fuvar->setCel(cel);
-    if (mikor != "") fuvar->setMikor(mikor);
+    if (celCim != "") fuvar->setCelCim(celCim);
+    if (szallitasiDatum != "") fuvar->setSzallitasiDatum(szallitasiDatum);
     if (tavolsag != -1) fuvar->setTavolsag(tavolsag);
     if (prioritas != -1) fuvar->setPrioritas(prioritas);
     if (specialisIgenyek != "") fuvar->setSpecialisIgenyek(specialisIgenyek);

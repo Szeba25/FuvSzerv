@@ -1,14 +1,10 @@
 #include "CegLista.h"
 
 CegLista::CegLista()
-{
-    //ctor
-}
+{}
 
 CegLista::~CegLista()
-{
-    //dtor
-}
+{}
 
 void CegLista::beolvas()
 {
@@ -77,13 +73,13 @@ int CegLista::idGen() const
     return maxId+1;
 }
 
-void CegLista::cegModositasa(int id, const string& ujNev, const string& ujCim, const string& ujTipus, int ujMeret)
+void CegLista::cegModositasa(int id, const string& nev, const string& cim, const string& tipus, int meret)
 {
     Ceg* modositandoCeg = getCegIdAlapjan(id);
-    if (ujNev != "") modositandoCeg->setNev(ujNev);
-    if (ujCim != "") modositandoCeg->setCim(ujCim);
-    if (ujTipus != "") modositandoCeg->setTipus(ujTipus);
-    if (ujMeret != -1) modositandoCeg->setMeret(ujMeret);
+    if (nev != "") modositandoCeg->setNev(nev);
+    if (cim != "") modositandoCeg->setCim(cim);
+    if (tipus != "") modositandoCeg->setTipus(tipus);
+    if (meret != -1) modositandoCeg->setMeret(meret);
     mentes();
 }
 

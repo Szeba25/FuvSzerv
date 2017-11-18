@@ -20,10 +20,10 @@ class FuvarLista
         void kiir();
         void kiirLeszurve(int keresId,
                           const string& kamionosFelhasznaloNeve,
-                          const string& honnan,
+                          const string& feladoCim,
                           const string& aruMegnevezes,
-                          const string& cel,
-                          const string& mikor,
+                          const string& celCim,
+                          const string& szallitasiDatum,
                           int prioritas,
                           const string& allapot,
                           const string& atvevesIdeje,
@@ -33,11 +33,11 @@ class FuvarLista
         void kiirAzonositokLeszurve(const string& kamionosFelhasznaloNeve);
 
         void fuvarHozzaadasa(const string& kamionosFelhasznaloNeve,
-                             const string& honnan,
+                             const string& feladoCim,
                              const string& aruMegnevezes,
                              double mennyiseg,
-                             const string& cel,
-                             const string& mikor,
+                             const string& celCim,
+                             const string& szallitasiDatum,
                              double tavolsag,
                              int prioritas,
                              const string& specialisIgenyek,
@@ -45,11 +45,11 @@ class FuvarLista
 
         void fuvarModositasa(int id,
                              const string& kamionosFelhasznaloNeve,
-                             const string& honnan,
+                             const string& feladoCim,
                              const string& aruMegnevezes,
                              double mennyiseg,
-                             const string& cel,
-                             const string& mikor,
+                             const string& celCim,
+                             const string& szallitasiDatum,
                              double tavolsag,
                              int prioritas,
                              const string& specialisIgenyek,
@@ -58,10 +58,12 @@ class FuvarLista
                              const string& atvevoTeljesNeve,
                              int ar,
                              const string& megjegyzesek);
+
         void fuvarModositasa(int id,
                              const string& allapot,
                              const string& atvevesIdeje,
                              const string& atvevoTeljesNeve);
+
         void fuvarModositasa(int id,
                              const string& megjegyzesek);
         int genId();

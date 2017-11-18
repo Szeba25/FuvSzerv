@@ -9,11 +9,11 @@ class Fuvar
     public:
         Fuvar(int id,
               const string& kamionosFelhasznaloNeve,
-              const string& honnan,
+              const string& feladoCim,
               const string& aruMegnevezes,
               double mennyiseg,
-              const string& cel,
-              const string& mikor,
+              const string& celCim,
+              const string& szallitasiDatum,
               double tavolsag,
               int prioritas,
               const string& specialisIgenyek,
@@ -22,11 +22,11 @@ class Fuvar
 
         int getId() const;
         const string& getKamionosFelhasznaloNeve() const;
-        const string& getHonnan() const;
+        const string& getFeladoCim() const;
         const string& getAruMegnevezes() const;
         double getMennyiseg() const;
-        const string& getCel() const;
-        const string& getMikor() const;
+        const string& getCelCim() const;
+        const string& getSzallitasiDatum() const;
         double getTavolsag() const;
         int getPrioritas() const;
         const string& getSpecialisIgenyek() const;
@@ -37,11 +37,11 @@ class Fuvar
         const string& getMegjegyzesek() const;
 
         void setKamionosFelhasznaloNeve(const string& kamionosFelhasznaloNeve);
-        void setHonnan(const string& honnan);
-        void setAruMegnevezes(const string& mit);
+        void setFeladoCim(const string& feladoCim);
+        void setAruMegnevezes(const string& aruMegnevezes);
         void setMennyiseg(double mennyiseg);
-        void setCel(const string& cel);
-        void setMikor(const string& mikor);
+        void setCelCim(const string& celCim);
+        void setSzallitasiDatum(const string& szallitasiDatum);
         void setTavolsag(double tavolsag);
         void setPrioritas(int prioritas);
         void setSpecialisIgenyek(const string& specialisIgenyek);
@@ -55,11 +55,11 @@ class Fuvar
     private:
         int id;
         string kamionosFelhasznaloNeve;
-        string honnan;
+        string feladoCim;
         string aruMegnevezes;
         double mennyiseg; // kg-ban! > 0
-        string cel;
-        string mikor;
+        string celCim;
+        string szallitasiDatum; // (eeee.hh.nn)
         double tavolsag; // km-ben! > 0
         int prioritas; // [1-9]
         string specialisIgenyek;
