@@ -64,4 +64,25 @@ bool is_hundate(const string& str) {
         (str.at(9) >= '0' && str.at(9) <= '9'));
 }
 
+string getdate() {
+    auto now = chrono::system_clock::now();
+    time_t now_c = chrono::system_clock::to_time_t(now);
+    struct tm* parts = localtime(&now_c);
+
+    int year = 1900 + parts->tm_year;
+    int month = 1 + parts->tm_mon;
+    int day = parts->tm_mday;
+
+    stringstream ss;
+    ss << year << ".";
+    if (month < 10)
+        ss << "0";
+    ss << month << ".";
+    if (day < 10)
+        ss << "0";
+    ss << day;
+
+    return ss.str();
+}
+
 }

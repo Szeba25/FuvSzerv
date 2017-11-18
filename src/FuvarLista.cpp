@@ -246,11 +246,48 @@ Fuvar* FuvarLista::getFuvarIdAlapjan(int id)
 
 int FuvarLista::getMaiFuvarokSzama()
 {
-    return 0;
+    int sum = 0;
+    string date = utils::getdate();
+    for (Fuvar& f : fuvarok) {
+        if (f.getSzallitasiDatum() == date) {
+            sum++;
+        }
+    }
+    return sum;
 }
 
-int FuvarLista::getMaiTeljesitettFuvarokSzama()
+int FuvarLista::getMaiSikeresFuvarokSzama()
 {
-    return 0;
+    int sum = 0;
+    string date = utils::getdate();
+    for (Fuvar& f : fuvarok) {
+        if (f.getSzallitasiDatum() == date && f.getAllapot() == 1) {
+            sum++;
+        }
+    }
+    return sum;
+}
+
+int FuvarLista::getFuvarokSzama()
+{
+    return fuvarok.size();
+}
+
+int FuvarLista::getSikeresFuvarokSzama()
+{
+    int sum = 0;
+    for (Fuvar& f : fuvarok) {
+        if (f.getAllapot() == 1) sum++;
+    }
+    return sum;
+}
+
+int FuvarLista::getSikertelenFuvarokSzama()
+{
+    int sum = 0;
+    for (Fuvar& f : fuvarok) {
+        if (f.getAllapot() == 2) sum++;
+    }
+    return sum;
 }
 

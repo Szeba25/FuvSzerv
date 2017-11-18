@@ -23,8 +23,10 @@ bool Tulajdonos::parancsFeldolgoz(int parancs, Adatok& adatok)
         napiStatisztikaLekerese(adatok.getFuvarLista());
         break;
     case 2:
+        cegAdatokLekerese(adatok.getCegAdatok());
         break;
     case 3:
+        hatekonysagiStatisztikaLekerese(adatok.getFuvarLista());
         break;
     case 4:
         kilepes = true;
@@ -35,6 +37,26 @@ bool Tulajdonos::parancsFeldolgoz(int parancs, Adatok& adatok)
 
 void Tulajdonos::napiStatisztikaLekerese(FuvarLista& lista)
 {
+    cout << "Mai osszes fuvarok szama: " << lista.getMaiFuvarokSzama() << endl;
+    cout << "Ma sikeresen teljesitett fuvarok szama: " << lista.getMaiSikeresFuvarokSzama() << endl;
+}
 
+void Tulajdonos::cegAdatokLekerese(CegAdatok& adatok)
+{
+    cout << "Ceg neve: " << adatok.getAdatok().adatLeker(0, 0) << endl;
+    cout << "Ceg cime: " << adatok.getAdatok().adatLeker(1, 0) << endl;
+    cout << "Foglalkoztatottak szama: " << adatok.getAdatok().adatLeker(2, 0) << endl;
+    cout << "Fejlesztesekre szant osszeg iden: " << adatok.getAdatok().adatLeker(3, 0) << endl;
+}
+
+
+void Tulajdonos::hatekonysagiStatisztikaLekerese(FuvarLista& lista)
+{
+    int ossz = lista.getFuvarokSzama();
+    int sikeres = lista.getSikeresFuvarokSzama();
+    int sikertelen = lista.getSikertelenFuvarokSzama();
+    cout << "Az osszes fuvarok szama: " << ossz << endl;
+    cout << "Sikeres fuvarok ebbol: " << sikeres << ", " << 100*((double)sikeres / (double)ossz) << "%" << endl;
+    cout << "Sikertelen fuvarok ebbol: " << sikertelen << ", " << 100*((double)sikertelen / (double)ossz) << "%" << endl;
 }
 

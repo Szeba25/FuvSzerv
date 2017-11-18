@@ -71,7 +71,10 @@ class FuvarLista
         bool fuvarLetezik(int id);
         Fuvar* getFuvarIdAlapjan(int id);
         int getMaiFuvarokSzama();
-        int getMaiTeljesitettFuvarokSzama();
+        int getMaiSikeresFuvarokSzama();
+        int getFuvarokSzama();
+        int getSikeresFuvarokSzama();
+        int getSikertelenFuvarokSzama();
     private:
         vector<Fuvar> fuvarok;
         bool matchString(const string& str1, const string& str2);

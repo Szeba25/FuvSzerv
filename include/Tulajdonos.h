@@ -14,6 +14,8 @@ class Tulajdonos : public AktivFelhasznalo
     private:
         // USE CASES
         void napiStatisztikaLekerese(FuvarLista& lista); // B1
+        void cegAdatokLekerese(CegAdatok& adatok); // B2
+        void hatekonysagiStatisztikaLekerese(FuvarLista& lista); // B3
 };
 
 #endif // TULAJDONOS_H

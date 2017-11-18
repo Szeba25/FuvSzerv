@@ -26,3 +26,9 @@ FuvarLista& Adatok::getFuvarLista()
 {
     return fuvarLista;
 }
+
+CegAdatok& Adatok::getCegAdatok()
+{
+    return cegAdatok;
+}
+

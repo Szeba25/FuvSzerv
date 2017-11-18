@@ -13,7 +13,7 @@ Menu::~Menu()
 bool Menu::mutat(Adatok& adatok)
 {
     cout << endl << "### Fuvarszervezo 2000 ###" << endl;
-    cout << "Udvozoljuk!" << endl;
+    cout << "Mai datum: " << utils::getdate() << endl;
     int parancs;
     bool kilepes = false;
 
