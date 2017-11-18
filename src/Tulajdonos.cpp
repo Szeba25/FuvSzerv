@@ -9,8 +9,8 @@ Tulajdonos::~Tulajdonos()
 
 void Tulajdonos::menuMutat()
 {
-    cout << "> 1 : napi statisztika lekerese" << endl;
-    cout << "> 2 : ceg adatok lekerese" << endl;
+    cout << "> 1 : ceg adatok lekerese" << endl;
+    cout << "> 2 : napi statisztika lekerese" << endl;
     cout << "> 3 : hatekonysagi statisztika lekerese" << endl;
     cout << "> 4 : kilepes" << endl;
 }
@@ -20,10 +20,10 @@ bool Tulajdonos::parancsFeldolgoz(int parancs, Adatok& adatok)
     bool kilepes = false;
     switch(parancs) {
     case 1:
-        napiStatisztikaLekerese(adatok.getFuvarLista());
+        cegAdatokLekerese(adatok.getCegAdatok());
         break;
     case 2:
-        cegAdatokLekerese(adatok.getCegAdatok());
+        napiStatisztikaLekerese(adatok.getFuvarLista());
         break;
     case 3:
         hatekonysagiStatisztikaLekerese(adatok.getFuvarLista());
@@ -35,12 +35,6 @@ bool Tulajdonos::parancsFeldolgoz(int parancs, Adatok& adatok)
     return kilepes;
 }
 
-void Tulajdonos::napiStatisztikaLekerese(FuvarLista& lista)
-{
-    cout << "Mai osszes fuvarok szama: " << lista.getMaiFuvarokSzama() << endl;
-    cout << "Ma sikeresen teljesitett fuvarok szama: " << lista.getMaiSikeresFuvarokSzama() << endl;
-}
-
 void Tulajdonos::cegAdatokLekerese(CegAdatok& adatok)
 {
     cout << "Ceg neve: " << adatok.getAdatok().adatLeker(0, 0) << endl;
@@ -49,6 +43,11 @@ void Tulajdonos::cegAdatokLekerese(CegAdatok& adatok)
     cout << "Fejlesztesekre szant osszeg iden: " << adatok.getAdatok().adatLeker(3, 0) << endl;
 }
 
+void Tulajdonos::napiStatisztikaLekerese(FuvarLista& lista)
+{
+    cout << "Mai osszes fuvarok szama: " << lista.getMaiFuvarokSzama() << endl;
+    cout << "Ma sikeresen teljesitett fuvarok szama: " << lista.getMaiSikeresFuvarokSzama() << endl;
+}
 
 void Tulajdonos::hatekonysagiStatisztikaLekerese(FuvarLista& lista)
 {

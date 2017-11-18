@@ -14,13 +14,13 @@ class Admin : public AktivFelhasznalo
     private:
         // USE CASES!
         void cegFelvetele(CegLista& lista); // A1
-        void cegTorlese(CegLista& lista); // A2
-        void cegModositasa(CegLista& lista); // A3
-        void felhasznaloFelvetele(FelhasznaloLista& lista); // A4
-        void felhasznalokListazasa(FelhasznaloLista& lista); // A5
-        void felhasznaloTorlese(FelhasznaloLista& lista); // A6
-        void felhasznaloModositasa(FelhasznaloLista& lista); // A7
+        void cegModositasa(CegLista& lista); // A2
         void cegekListazasa(CegLista& lista); // TA1
+        void cegTorlese(CegLista& lista); // A3
+        void felhasznaloFelvetele(FelhasznaloLista& lista); // A4
+        void felhasznaloModositasa(FelhasznaloLista& lista); // A5
+        void felhasznalokListazasa(FelhasznaloLista& lista); // A6
+        void felhasznaloTorlese(FelhasznaloLista& lista); // A7
 
         // formai ellenorzesek
         bool felhasznaloAdataiFormaiEllenorzes(bool kihagyhato, int tipus);

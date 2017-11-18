@@ -15,10 +15,10 @@ class Titkar : public AktivFelhasznalo
     private:
         // USE CASES
         void fuvarHozzaadasa(FelhasznaloLista& felhLista, FuvarLista& lista); // T1
-        void fuvarokListazasa(FuvarLista& lista); // T2
-        void fuvarModositasa(FelhasznaloLista& felhLista, FuvarLista& lista); // T3
-        void kamionosFelhasznalokListazasa(FelhasznaloLista& felhLista); // T4
-        void fuvarokKeresese(FuvarLista& lista); // T5
+        void fuvarModositasa(FelhasznaloLista& felhLista, FuvarLista& lista); // T2
+        void fuvarokListazasa(FuvarLista& lista); // T3
+        void fuvarokKeresese(FuvarLista& lista); // T4
+        void kamionosFelhasznalokListazasa(FelhasznaloLista& felhLista); // T5
         void cegekListazasa(CegLista& cegLista); // TA1
 
         bool fuvarAdatokFormaiHelyessege(bool kihagyhato,

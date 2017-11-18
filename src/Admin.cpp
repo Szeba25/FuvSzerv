@@ -10,13 +10,13 @@ Admin::~Admin()
 void Admin::menuMutat()
 {
     cout << "> 1 : ceg felvetele" << endl;
-    cout << "> 2 : ceg torlese" << endl;
-    cout << "> 3 : ceg modositasa" << endl;
-    cout << "> 4 : felhasznalo felvetele" << endl;
-    cout << "> 5 : felhasznalok listazasa" << endl;
-    cout << "> 6 : felhasznalo torlese" << endl;
-    cout << "> 7 : felhasznalo modositasa" << endl;
-    cout << "> 8 : cegek listazasa" << endl;
+    cout << "> 2 : ceg modositasa" << endl;
+    cout << "> 3 : cegek listazasa" << endl;
+    cout << "> 4 : ceg torlese" << endl;
+    cout << "> 5 : felhasznalo felvetele" << endl;
+    cout << "> 6 : felhasznalo modositasa" << endl;
+    cout << "> 7 : felhasznalok listazasa" << endl;
+    cout << "> 8 : felhasznalo torlese" << endl;
     cout << "> 9 : kilepes" << endl;
 }
 
@@ -28,25 +28,25 @@ bool Admin::parancsFeldolgoz(int parancs, Adatok& adatok)
         cegFelvetele(adatok.getCegLista());
         break;
     case 2:
-        cegTorlese(adatok.getCegLista());
-        break;
-    case 3:
         cegModositasa(adatok.getCegLista());
         break;
+    case 3:
+        cegekListazasa(adatok.getCegLista());
+        break;
     case 4:
-        felhasznaloFelvetele(adatok.getFelhasznaloLista());
+        cegTorlese(adatok.getCegLista());
         break;
     case 5:
-        felhasznalokListazasa(adatok.getFelhasznaloLista());
+        felhasznaloFelvetele(adatok.getFelhasznaloLista());
         break;
     case 6:
-        felhasznaloTorlese(adatok.getFelhasznaloLista());
-        break;
-    case 7:
         felhasznaloModositasa(adatok.getFelhasznaloLista());
         break;
+    case 7:
+        felhasznalokListazasa(adatok.getFelhasznaloLista());
+        break;
     case 8:
-        cegekListazasa(adatok.getCegLista());
+        felhasznaloTorlese(adatok.getFelhasznaloLista());
         break;
     case 9:
         kilepes = true;
@@ -79,19 +79,6 @@ void Admin::cegFelvetele(CegLista& lista)
     }
 }
 
-void Admin::cegTorlese(CegLista& lista)
-{
-    int id;
-    cout << "Adja meg a torolni kivant ceg azonositojat (szam): ";
-    id = utils::getint();
-
-    if (lista.cegLetezik(id)) {
-        lista.cegTorlese(id);
-    } else {
-        cout << "HIBA: Nincs ilyen azonositoju ceg!" << endl;
-    }
-}
-
 void Admin::cegModositasa(CegLista& lista)
 {
     string nev;
@@ -120,6 +107,24 @@ void Admin::cegModositasa(CegLista& lista)
         } else {
             cout << "HIBA: A megadott meret nem megengedett!" << endl;
         }
+    } else {
+        cout << "HIBA: Nincs ilyen azonositoju ceg!" << endl;
+    }
+}
+
+void Admin::cegekListazasa(CegLista& lista)
+{
+    lista.kiir();
+}
+
+void Admin::cegTorlese(CegLista& lista)
+{
+    int id;
+    cout << "Adja meg a torolni kivant ceg azonositojat (szam): ";
+    id = utils::getint();
+
+    if (lista.cegLetezik(id)) {
+        lista.cegTorlese(id);
     } else {
         cout << "HIBA: Nincs ilyen azonositoju ceg!" << endl;
     }
@@ -160,25 +165,6 @@ void Admin::felhasznaloFelvetele(FelhasznaloLista& lista)
     }
 }
 
-void Admin::felhasznalokListazasa(FelhasznaloLista& lista)
-{
-    lista.kiir();
-}
-
-void Admin::felhasznaloTorlese(FelhasznaloLista& lista)
-{
-    string felhasznaloNev;
-
-    cin.ignore();
-    cout << "Adjon meg egy felhasznalo nevet: ";
-    getline(cin, felhasznaloNev);
-    if (lista.felhasznaloNevLetezik(felhasznaloNev)) {
-        lista.felhasznaloTorlese(felhasznaloNev);
-    } else {
-        cout << "HIBA: A felhasznalonev nem letezik!" << endl;
-    }
-}
-
 void Admin::felhasznaloModositasa(FelhasznaloLista& lista)
 {
     string felhasznaloNev;
@@ -212,9 +198,23 @@ void Admin::felhasznaloModositasa(FelhasznaloLista& lista)
     }
 }
 
-void Admin::cegekListazasa(CegLista& lista)
+void Admin::felhasznalokListazasa(FelhasznaloLista& lista)
 {
     lista.kiir();
+}
+
+void Admin::felhasznaloTorlese(FelhasznaloLista& lista)
+{
+    string felhasznaloNev;
+
+    cin.ignore();
+    cout << "Adjon meg egy felhasznalo nevet: ";
+    getline(cin, felhasznaloNev);
+    if (lista.felhasznaloNevLetezik(felhasznaloNev)) {
+        lista.felhasznaloTorlese(felhasznaloNev);
+    } else {
+        cout << "HIBA: A felhasznalonev nem letezik!" << endl;
+    }
 }
 
 bool Admin::felhasznaloAdataiFormaiEllenorzes(bool kihagyhato, int tipus)

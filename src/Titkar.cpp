@@ -10,10 +10,10 @@ Titkar::~Titkar()
 void Titkar::menuMutat()
 {
     cout << "> 1 : fuvar hozzaadasa" << endl;
-    cout << "> 2 : fuvarok listazasa" << endl;
-    cout << "> 3 : fuvar modositasa" << endl;
-    cout << "> 4 : kamionos felhasznalok listazasa" << endl;
-    cout << "> 5 : fuvarok keresese" << endl;
+    cout << "> 2 : fuvar modositasa" << endl;
+    cout << "> 3 : fuvarok listazasa" << endl;
+    cout << "> 4 : fuvarok keresese" << endl;
+    cout << "> 5 : kamionos felhasznalok listazasa" << endl;
     cout << "> 6 : cegek listazasa" << endl;
     cout << "> 7 : kilepes" << endl;
 }
@@ -26,16 +26,16 @@ bool Titkar::parancsFeldolgoz(int parancs, Adatok& adatok)
         fuvarHozzaadasa(adatok.getFelhasznaloLista(), adatok.getFuvarLista());
         break;
     case 2:
-        fuvarokListazasa(adatok.getFuvarLista());
-        break;
-    case 3:
         fuvarModositasa(adatok.getFelhasznaloLista(), adatok.getFuvarLista());
         break;
+    case 3:
+        fuvarokListazasa(adatok.getFuvarLista());
+        break;
     case 4:
-        kamionosFelhasznalokListazasa(adatok.getFelhasznaloLista());
+        fuvarokKeresese(adatok.getFuvarLista());
         break;
     case 5:
-        fuvarokKeresese(adatok.getFuvarLista());
+        kamionosFelhasznalokListazasa(adatok.getFelhasznaloLista());
         break;
     case 6:
         cegekListazasa(adatok.getCegLista());
@@ -96,11 +96,6 @@ void Titkar::fuvarHozzaadasa(FelhasznaloLista& felhLista, FuvarLista& lista)
     } else {
         cout << "HIBA: Nem letezik ilyen kamionos!" << endl;
     }
-}
-
-void Titkar::fuvarokListazasa(FuvarLista& lista)
-{
-    lista.kiir();
 }
 
 void Titkar::fuvarModositasa(FelhasznaloLista& felhLista, FuvarLista& lista)
@@ -178,9 +173,9 @@ void Titkar::fuvarModositasa(FelhasznaloLista& felhLista, FuvarLista& lista)
     }
 }
 
-void Titkar::kamionosFelhasznalokListazasa(FelhasznaloLista& felhLista)
+void Titkar::fuvarokListazasa(FuvarLista& lista)
 {
-    felhLista.kiirKamionosok();
+    lista.kiir();
 }
 
 void Titkar::fuvarokKeresese(FuvarLista& lista)
@@ -223,6 +218,11 @@ void Titkar::fuvarokKeresese(FuvarLista& lista)
                        feladoCim, aruMegnevezes, celCim,
                        tervezettSzallitasiDatum, prioritas,
                        allapot, atvevesIdeje, atvevoTeljesNeve);
+}
+
+void Titkar::kamionosFelhasznalokListazasa(FelhasznaloLista& felhLista)
+{
+    felhLista.kiirKamionosok();
 }
 
 void Titkar::cegekListazasa(CegLista& cegLista)

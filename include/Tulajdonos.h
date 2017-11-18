@@ -13,8 +13,8 @@ class Tulajdonos : public AktivFelhasznalo
         virtual bool parancsFeldolgoz(int parancs, Adatok& adatok);
     private:
         // USE CASES
-        void napiStatisztikaLekerese(FuvarLista& lista); // B1
-        void cegAdatokLekerese(CegAdatok& adatok); // B2
+        void cegAdatokLekerese(CegAdatok& adatok); // B1
+        void napiStatisztikaLekerese(FuvarLista& lista); // B2
         void hatekonysagiStatisztikaLekerese(FuvarLista& lista); // B3
 };
 
