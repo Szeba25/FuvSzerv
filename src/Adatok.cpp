@@ -32,3 +32,7 @@ CegAdatok& Adatok::getCegAdatok()
     return cegAdatok;
 }
 
+FormaiEllenorzo& Adatok::getFormaiEllenorzo()
+{
+    return formaiEllenorzo;
+}

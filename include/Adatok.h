@@ -6,6 +6,7 @@
 #include "CegLista.h"
 #include "FuvarLista.h"
 #include "CegAdatok.h"
+#include "FormaiEllenorzo.h"
 
 using namespace std;
 
@@ -19,11 +20,13 @@ class Adatok
         CegLista& getCegLista();
         FuvarLista& getFuvarLista();
         CegAdatok& getCegAdatok();
+        FormaiEllenorzo& getFormaiEllenorzo();
     private:
         FelhasznaloLista felhasznaloLista;
         CegLista cegLista;
         FuvarLista fuvarLista;
         CegAdatok cegAdatok;
+        FormaiEllenorzo formaiEllenorzo;
 };
 
 #endif // ADATOK_H

@@ -25,10 +25,10 @@ bool Admin::parancsFeldolgoz(int parancs, Adatok& adatok)
     bool kilepes = false;
     switch(parancs) {
     case 1:
-        cegFelvetele(adatok.getCegLista());
+        cegFelvetele(adatok.getCegLista(), adatok.getFormaiEllenorzo());
         break;
     case 2:
-        cegModositasa(adatok.getCegLista());
+        cegModositasa(adatok.getCegLista(), adatok.getFormaiEllenorzo());
         break;
     case 3:
         cegekListazasa(adatok.getCegLista());
@@ -37,10 +37,10 @@ bool Admin::parancsFeldolgoz(int parancs, Adatok& adatok)
         cegTorlese(adatok.getCegLista());
         break;
     case 5:
-        felhasznaloFelvetele(adatok.getFelhasznaloLista());
+        felhasznaloFelvetele(adatok.getFelhasznaloLista(), adatok.getFormaiEllenorzo());
         break;
     case 6:
-        felhasznaloModositasa(adatok.getFelhasznaloLista());
+        felhasznaloModositasa(adatok.getFelhasznaloLista(), adatok.getFormaiEllenorzo());
         break;
     case 7:
         felhasznalokListazasa(adatok.getFelhasznaloLista());
@@ -55,7 +55,7 @@ bool Admin::parancsFeldolgoz(int parancs, Adatok& adatok)
     return kilepes;
 }
 
-void Admin::cegFelvetele(CegLista& lista)
+void Admin::cegFelvetele(CegLista& lista, FormaiEllenorzo& formaiEllenorzo)
 {
     string nev;
     string cim;
@@ -72,14 +72,14 @@ void Admin::cegFelvetele(CegLista& lista)
     cout << "Adja meg a ceg meretet [1-9]: ";
     meret = utils::getint();
 
-    if (cegAdataiFormaiEllenorzes(false, meret)) {
+    if (formaiEllenorzo.cegFelvetele(meret)) {
         lista.ujCeg(nev, cim, tipus, meret);
     } else {
         cout << "HIBA: A megadott meret nem megengedett!" << endl;
     }
 }
 
-void Admin::cegModositasa(CegLista& lista)
+void Admin::cegModositasa(CegLista& lista, FormaiEllenorzo& formaiEllenorzo)
 {
     string nev;
     string cim;
@@ -102,7 +102,7 @@ void Admin::cegModositasa(CegLista& lista)
         cout << "Adja meg az uj ceg meretet [1-9]: ";
         meret = utils::getint();
 
-        if (cegAdataiFormaiEllenorzes(true, meret)) {
+        if (formaiEllenorzo.cegModositasa(meret)) {
             lista.cegModositasa(id, nev, cim, tipus, meret);
         } else {
             cout << "HIBA: A megadott meret nem megengedett!" << endl;
@@ -130,7 +130,7 @@ void Admin::cegTorlese(CegLista& lista)
     }
 }
 
-void Admin::felhasznaloFelvetele(FelhasznaloLista& lista)
+void Admin::felhasznaloFelvetele(FelhasznaloLista& lista, FormaiEllenorzo& formaiEllenorzo)
 {
     string felhasznaloNev;
     string jelszo;
@@ -151,7 +151,7 @@ void Admin::felhasznaloFelvetele(FelhasznaloLista& lista)
         cout << "Adja meg a felhasznalo tipusat (0=tulajdonos, 1=admin, 2=titkar, 3=kamionos)\n:";
         tipus = utils::getint();
 
-        if (felhasznaloAdataiFormaiEllenorzes(false, tipus)) {
+        if (formaiEllenorzo.felhasznaloFelvetele(tipus)) {
             lista.ujFelhasznalo(felhasznaloNev,
                                jelszo,
                                vezetekNev,
@@ -165,7 +165,7 @@ void Admin::felhasznaloFelvetele(FelhasznaloLista& lista)
     }
 }
 
-void Admin::felhasznaloModositasa(FelhasznaloLista& lista)
+void Admin::felhasznaloModositasa(FelhasznaloLista& lista, FormaiEllenorzo& formaiEllenorzo)
 {
     string felhasznaloNev;
     string jelszo;
@@ -188,7 +188,7 @@ void Admin::felhasznaloModositasa(FelhasznaloLista& lista)
         cout << "Adjon meg egy uj tipust (0=tulajdonos, 1=admin, 2=titkar, 3=kamionos)\n:";
         tipus = utils::getint();
 
-        if (felhasznaloAdataiFormaiEllenorzes(true, tipus)) {
+        if (formaiEllenorzo.felhasznaloModositasa(tipus)) {
             lista.felhasznaloModositasa(felhasznaloNev, jelszo, vezetekNev, keresztNev, tipus);
         } else {
             cout << "HIBA: A megadott tipus nem megengedett!" << endl;
@@ -216,14 +216,3 @@ void Admin::felhasznaloTorlese(FelhasznaloLista& lista)
         cout << "HIBA: A felhasznalonev nem letezik!" << endl;
     }
 }
-
-bool Admin::felhasznaloAdataiFormaiEllenorzes(bool kihagyhato, int tipus)
-{
-    return ( (kihagyhato && tipus == -1) || (tipus >= 0 && tipus <= 3) );
-}
-
-bool Admin::cegAdataiFormaiEllenorzes(bool kihagyhato, int meret)
-{
-    return ( (kihagyhato && meret == -1) || (meret >= 1 && meret <= 9) );
-}
-

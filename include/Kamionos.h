@@ -15,13 +15,12 @@ class Kamionos : public AktivFelhasznalo
         // USE CASES
         void fuvarokCelzottListazasa(FuvarLista& lista); // K1
         void fuvarMegtekintese(FuvarLista& lista); // K3
-        void fuvarAllapotModositasa(FuvarLista& lista); // K4
+        void fuvarAllapotModositasa(FuvarLista& lista, FormaiEllenorzo& formaiEllenorzo); // K4
         void fuvarMegjegyzesekModositasa(FuvarLista& lista); // K5
 
         // INCLUDE
         void fuvarAzonositokCelzottListazasa(FuvarLista& lista); // K2
 
-        bool fuvarAdatokFormaiEllenorzese(const string& datum, int allapot);
 };
 
 #endif // KAMIONOS_H

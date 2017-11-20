@@ -27,7 +27,7 @@ bool Kamionos::parancsFeldolgoz(int parancs, Adatok& adatok)
         fuvarMegtekintese(adatok.getFuvarLista());
         break;
     case 3:
-        fuvarAllapotModositasa(adatok.getFuvarLista());
+        fuvarAllapotModositasa(adatok.getFuvarLista(), adatok.getFormaiEllenorzo());
         break;
     case 4:
         fuvarMegjegyzesekModositasa(adatok.getFuvarLista());
@@ -62,7 +62,7 @@ void Kamionos::fuvarMegtekintese(FuvarLista& lista)
     }
 }
 
-void Kamionos::fuvarAllapotModositasa(FuvarLista& lista)
+void Kamionos::fuvarAllapotModositasa(FuvarLista& lista, FormaiEllenorzo& formaiEllenorzo)
 {
     int allapot;
     string atvevesIdeje;
@@ -84,7 +84,7 @@ void Kamionos::fuvarAllapotModositasa(FuvarLista& lista)
         cout << "Adja meg az uj atvevo teljes nevet: ";
         getline(cin, atvevoTeljesNeve);
 
-        if (fuvarAdatokFormaiEllenorzese(atvevesIdeje, allapot)) {
+        if (formaiEllenorzo.fuvarAllapotModositasa(atvevesIdeje, allapot)) {
             lista.fuvarModositasa(id, allapot, atvevesIdeje, atvevoTeljesNeve);
         } else {
             cout << "A megadott datum helytelen formatumu!" << endl;
@@ -120,10 +120,3 @@ void Kamionos::fuvarAzonositokCelzottListazasa(FuvarLista& lista)
 {
     lista.kiirAzonositokLeszurve(aktivFelhasznaloNev);
 }
-
-bool Kamionos::fuvarAdatokFormaiEllenorzese(const string& datum, int allapot)
-{
-    return (utils::is_hundate(datum) && allapot >= 0 && allapot <= 2);
-}
-
-

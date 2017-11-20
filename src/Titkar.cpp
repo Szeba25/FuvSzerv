@@ -23,10 +23,10 @@ bool Titkar::parancsFeldolgoz(int parancs, Adatok& adatok)
     bool kilepes = false;
     switch(parancs) {
     case 1:
-        fuvarHozzaadasa(adatok.getFelhasznaloLista(), adatok.getFuvarLista());
+        fuvarHozzaadasa(adatok.getFelhasznaloLista(), adatok.getFuvarLista(), adatok.getFormaiEllenorzo());
         break;
     case 2:
-        fuvarModositasa(adatok.getFelhasznaloLista(), adatok.getFuvarLista());
+        fuvarModositasa(adatok.getFelhasznaloLista(), adatok.getFuvarLista(), adatok.getFormaiEllenorzo());
         break;
     case 3:
         fuvarokListazasa(adatok.getFuvarLista());
@@ -47,7 +47,7 @@ bool Titkar::parancsFeldolgoz(int parancs, Adatok& adatok)
     return kilepes;
 }
 
-void Titkar::fuvarHozzaadasa(FelhasznaloLista& felhLista, FuvarLista& lista)
+void Titkar::fuvarHozzaadasa(FelhasznaloLista& felhLista, FuvarLista& lista, FormaiEllenorzo& formaiEllenorzo)
 {
     string feladoCim;
     string aruMegnevezes;
@@ -84,9 +84,7 @@ void Titkar::fuvarHozzaadasa(FelhasznaloLista& felhLista, FuvarLista& lista)
         cout << "Adja meg a megjegyzeseket: ";
         getline(cin, megjegyzesek);
 
-        if (fuvarAdatokFormaiHelyessege(false, mennyiseg, tavolsag, prioritas) &&
-            fuvarAdatokFormaiHelyessege(false, tervezettSzallitasiDatum)) {
-
+        if (formaiEllenorzo.fuvarHozzaadasa(mennyiseg, tavolsag, prioritas, tervezettSzallitasiDatum)) {
             lista.fuvarHozzaadasa(kamionosFelhasznaloNeve, feladoCim, aruMegnevezes,
                                   mennyiseg, celCim, tervezettSzallitasiDatum, tavolsag,
                                   prioritas, specialisIgenyek, megjegyzesek);
@@ -98,7 +96,7 @@ void Titkar::fuvarHozzaadasa(FelhasznaloLista& felhLista, FuvarLista& lista)
     }
 }
 
-void Titkar::fuvarModositasa(FelhasznaloLista& felhLista, FuvarLista& lista)
+void Titkar::fuvarModositasa(FelhasznaloLista& felhLista, FuvarLista& lista, FormaiEllenorzo& formaiEllenorzo)
 {
     string kamionosFelhasznaloNeve;
     string feladoCim;
@@ -152,11 +150,10 @@ void Titkar::fuvarModositasa(FelhasznaloLista& felhLista, FuvarLista& lista)
             cout << "Adja meg az uj megjegyzeseket: ";
             getline(cin, megjegyzesek);
 
-            if (fuvarAdatokFormaiHelyessege(true, mennyiseg, tavolsag, prioritas) &&
-                fuvarAdatokFormaiHelyessege(true, ar, allapot) &&
-                fuvarAdatokFormaiHelyessege(true, tervezettSzallitasiDatum) &&
-                fuvarAdatokFormaiHelyessege(true, atvevesIdeje)) {
-
+            if (formaiEllenorzo.fuvarModositasa(mennyiseg, tavolsag, prioritas,
+                                                ar, allapot,
+                                                tervezettSzallitasiDatum, atvevesIdeje)) {
+                // formailag helyes adatok megadva
                 lista.fuvarModositasa(id, kamionosFelhasznaloNeve, feladoCim,
                                       aruMegnevezes, mennyiseg,
                                       celCim, tervezettSzallitasiDatum, tavolsag,
@@ -228,26 +225,4 @@ void Titkar::kamionosFelhasznalokListazasa(FelhasznaloLista& felhLista)
 void Titkar::cegekListazasa(CegLista& cegLista)
 {
     cegLista.kiir();
-}
-
-bool Titkar::fuvarAdatokFormaiHelyessege(bool kihagyhato, double mennyiseg, double tavolsag, int prioritas)
-{
-    return (
-            ( (kihagyhato && mennyiseg == -1) || mennyiseg > 0) &&
-            ( (kihagyhato && tavolsag == -1) || tavolsag > 0) &&
-            ( (kihagyhato && prioritas == -1) || (prioritas >=1 && prioritas <= 9) )
-           );
-}
-
-bool Titkar::fuvarAdatokFormaiHelyessege(bool kihagyhato, int ar, int allapot)
-{
-    return (
-            ( (kihagyhato && ar == -1) || ar >= 1 ) &&
-            ( (kihagyhato && allapot == -1) || (allapot >= 0 && allapot <= 2) )
-            );
-}
-
-bool Titkar::fuvarAdatokFormaiHelyessege(bool kihagyhato, const string& datum)
-{
-    return ( ( (kihagyhato && datum == "") || utils::is_hundate(datum) ) );
 }

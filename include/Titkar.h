@@ -14,20 +14,13 @@ class Titkar : public AktivFelhasznalo
 
     private:
         // USE CASES
-        void fuvarHozzaadasa(FelhasznaloLista& felhLista, FuvarLista& lista); // T1
-        void fuvarModositasa(FelhasznaloLista& felhLista, FuvarLista& lista); // T2
+        void fuvarHozzaadasa(FelhasznaloLista& felhLista, FuvarLista& lista, FormaiEllenorzo& formaiEllenorzo); // T1
+        void fuvarModositasa(FelhasznaloLista& felhLista, FuvarLista& lista, FormaiEllenorzo& formaiEllenorzo); // T2
         void fuvarokListazasa(FuvarLista& lista); // T3
         void fuvarokKeresese(FuvarLista& lista); // T4
         void kamionosFelhasznalokListazasa(FelhasznaloLista& felhLista); // T5
         void cegekListazasa(CegLista& cegLista); // TA1
 
-        bool fuvarAdatokFormaiHelyessege(bool kihagyhato,
-                                         double mennyiseg,
-                                         double tavolsag,
-                                         int prioritas);
-
-        bool fuvarAdatokFormaiHelyessege(bool kihagyhato, int ar, int allapot);
-        bool fuvarAdatokFormaiHelyessege(bool kihagyhato, const string& datum);
 };
 
 #endif // TITKAR_H
