@@ -1,7 +1,8 @@
 #include "Titkar.h"
 
-Titkar::Titkar(const string& aktivFelhasznaloNev, const string& aktivVezetekNev, const string& aktivKeresztNev) :
-    AktivFelhasznalo(aktivFelhasznaloNev, aktivVezetekNev, aktivKeresztNev)
+Titkar::Titkar(const string& aktivFelhasznaloNev, const string& aktivVezetekNev,
+               const string& aktivKeresztNev, FormaiEllenorzo* formaiEllenorzo) :
+    AktivFelhasznalo(aktivFelhasznaloNev, aktivVezetekNev, aktivKeresztNev, formaiEllenorzo)
 {}
 
 Titkar::~Titkar()
@@ -18,27 +19,27 @@ void Titkar::menuMutat()
     cout << "> 7 : kilepes" << endl;
 }
 
-bool Titkar::parancsFeldolgoz(int parancs, Adatok& adatok)
+bool Titkar::parancsFeldolgoz(int parancs)
 {
     bool kilepes = false;
     switch(parancs) {
     case 1:
-        fuvarHozzaadasa(adatok.getFelhasznaloLista(), adatok.getFuvarLista(), adatok.getFormaiEllenorzo());
+        fuvarHozzaadasa();
         break;
     case 2:
-        fuvarModositasa(adatok.getFelhasznaloLista(), adatok.getFuvarLista(), adatok.getFormaiEllenorzo());
+        fuvarModositasa();
         break;
     case 3:
-        fuvarokListazasa(adatok.getFuvarLista());
+        fuvarokListazasa();
         break;
     case 4:
-        fuvarokKeresese(adatok.getFuvarLista());
+        fuvarokKeresese();
         break;
     case 5:
-        kamionosFelhasznalokListazasa(adatok.getFelhasznaloLista());
+        kamionosFelhasznalokListazasa();
         break;
     case 6:
-        cegekListazasa(adatok.getCegLista());
+        cegekListazasa();
         break;
     case 7:
         kilepes = true;
@@ -47,7 +48,7 @@ bool Titkar::parancsFeldolgoz(int parancs, Adatok& adatok)
     return kilepes;
 }
 
-void Titkar::fuvarHozzaadasa(FelhasznaloLista& felhLista, FuvarLista& lista, FormaiEllenorzo& formaiEllenorzo)
+void Titkar::fuvarHozzaadasa()
 {
     string feladoCim;
     string aruMegnevezes;
@@ -64,7 +65,7 @@ void Titkar::fuvarHozzaadasa(FelhasznaloLista& felhLista, FuvarLista& lista, For
     string kamionosFelhasznaloNeve;
     getline(cin, kamionosFelhasznaloNeve);
 
-    if (felhLista.kamionosFelhasznaloNevLetezik(kamionosFelhasznaloNeve)) {
+    if (felhasznaloLista->kamionosFelhasznaloNevLetezik(kamionosFelhasznaloNeve)) {
         cout << "Adja meg a felado cimet: ";
         getline(cin, feladoCim);
         cout << "Adja meg az aru megnevezeset: ";
@@ -84,8 +85,8 @@ void Titkar::fuvarHozzaadasa(FelhasznaloLista& felhLista, FuvarLista& lista, For
         cout << "Adja meg a megjegyzeseket: ";
         getline(cin, megjegyzesek);
 
-        if (formaiEllenorzo.fuvarHozzaadasa(mennyiseg, tavolsag, prioritas, tervezettSzallitasiDatum)) {
-            lista.fuvarHozzaadasa(kamionosFelhasznaloNeve, feladoCim, aruMegnevezes,
+        if (formaiEllenorzo->fuvarHozzaadasa(mennyiseg, tavolsag, prioritas, tervezettSzallitasiDatum)) {
+            fuvarLista->fuvarHozzaadasa(kamionosFelhasznaloNeve, feladoCim, aruMegnevezes,
                                   mennyiseg, celCim, tervezettSzallitasiDatum, tavolsag,
                                   prioritas, specialisIgenyek, megjegyzesek);
         } else {
@@ -96,7 +97,7 @@ void Titkar::fuvarHozzaadasa(FelhasznaloLista& felhLista, FuvarLista& lista, For
     }
 }
 
-void Titkar::fuvarModositasa(FelhasznaloLista& felhLista, FuvarLista& lista, FormaiEllenorzo& formaiEllenorzo)
+void Titkar::fuvarModositasa()
 {
     string kamionosFelhasznaloNeve;
     string feladoCim;
@@ -118,11 +119,11 @@ void Titkar::fuvarModositasa(FelhasznaloLista& felhLista, FuvarLista& lista, For
     int id;
     id = utils::getint();
 
-    if (lista.fuvarLetezik(id)) {
+    if (fuvarLista->fuvarLetezik(id)) {
         cout << "[Ha az adatot nem adja meg, az nem kerul modositasra!!!]" << endl;
         cout << "Adja meg az uj kamionos felhasznalonevet: ";
         getline(cin, kamionosFelhasznaloNeve);
-        if (kamionosFelhasznaloNeve == "" || felhLista.kamionosFelhasznaloNevLetezik(kamionosFelhasznaloNeve)) {
+        if (kamionosFelhasznaloNeve == "" || felhasznaloLista->kamionosFelhasznaloNevLetezik(kamionosFelhasznaloNeve)) {
             cout << "Adja meg a felado uj cimet: ";
             getline(cin, feladoCim);
             cout << "Adja meg az aru uj megnevezeset: ";
@@ -150,11 +151,11 @@ void Titkar::fuvarModositasa(FelhasznaloLista& felhLista, FuvarLista& lista, For
             cout << "Adja meg az uj megjegyzeseket: ";
             getline(cin, megjegyzesek);
 
-            if (formaiEllenorzo.fuvarModositasa(mennyiseg, tavolsag, prioritas,
+            if (formaiEllenorzo->fuvarModositasa(mennyiseg, tavolsag, prioritas,
                                                 ar, allapot,
                                                 tervezettSzallitasiDatum, atvevesIdeje)) {
                 // formailag helyes adatok megadva
-                lista.fuvarModositasa(id, kamionosFelhasznaloNeve, feladoCim,
+                fuvarLista->fuvarModositasa(id, kamionosFelhasznaloNeve, feladoCim,
                                       aruMegnevezes, mennyiseg,
                                       celCim, tervezettSzallitasiDatum, tavolsag,
                                       prioritas, specialisIgenyek, allapot,
@@ -170,12 +171,12 @@ void Titkar::fuvarModositasa(FelhasznaloLista& felhLista, FuvarLista& lista, For
     }
 }
 
-void Titkar::fuvarokListazasa(FuvarLista& lista)
+void Titkar::fuvarokListazasa()
 {
-    lista.kiir();
+    fuvarLista->kiir();
 }
 
-void Titkar::fuvarokKeresese(FuvarLista& lista)
+void Titkar::fuvarokKeresese()
 {
     int id;
     string kamionosFelhasznaloNeve;
@@ -211,18 +212,18 @@ void Titkar::fuvarokKeresese(FuvarLista& lista)
     cout << "Atvevo teljes neve: ";
     getline(cin, atvevoTeljesNeve);
     cout << endl;
-    lista.kiirLeszurve(id, kamionosFelhasznaloNeve,
+    fuvarLista->kiirLeszurve(id, kamionosFelhasznaloNeve,
                        feladoCim, aruMegnevezes, celCim,
                        tervezettSzallitasiDatum, prioritas,
                        allapot, atvevesIdeje, atvevoTeljesNeve);
 }
 
-void Titkar::kamionosFelhasznalokListazasa(FelhasznaloLista& felhLista)
+void Titkar::kamionosFelhasznalokListazasa()
 {
-    felhLista.kiirKamionosok();
+    felhasznaloLista->kiirKamionosok();
 }
 
-void Titkar::cegekListazasa(CegLista& cegLista)
+void Titkar::cegekListazasa()
 {
-    cegLista.kiir();
+    cegLista->kiir();
 }

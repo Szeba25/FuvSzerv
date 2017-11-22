@@ -6,20 +6,21 @@
 class Kamionos : public AktivFelhasznalo
 {
     public:
-        Kamionos(const string& aktivFelhasznaloNev, const string& aktivVezetekNev, const string& aktivKeresztNev);
+        Kamionos(const string& aktivFelhasznaloNev, const string& aktivVezetekNev,
+                 const string& aktivKeresztNev, FormaiEllenorzo* formaiEllenorzo);
         virtual ~Kamionos();
 
         virtual void menuMutat();
-        virtual bool parancsFeldolgoz(int parancs, Adatok& adatok);
+        virtual bool parancsFeldolgoz(int parancs);
     private:
         // USE CASES
-        void fuvarokCelzottListazasa(FuvarLista& lista); // K1
-        void fuvarMegtekintese(FuvarLista& lista); // K3
-        void fuvarAllapotModositasa(FuvarLista& lista, FormaiEllenorzo& formaiEllenorzo); // K4
-        void fuvarMegjegyzesekModositasa(FuvarLista& lista); // K5
+        void fuvarokCelzottListazasa(); // K1
+        void fuvarMegtekintese(); // K3
+        void fuvarAllapotModositasa(); // K4
+        void fuvarMegjegyzesekModositasa(); // K5
 
         // INCLUDE
-        void fuvarAzonositokCelzottListazasa(FuvarLista& lista); // K2
+        void fuvarAzonositokCelzottListazasa(); // K2
 
 };
 

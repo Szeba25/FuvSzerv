@@ -6,16 +6,17 @@
 class Tulajdonos : public AktivFelhasznalo
 {
     public:
-        Tulajdonos(const string& aktivFelhasznaloNev, const string& aktivVezetekNev, const string& aktivKeresztNev);
+        Tulajdonos(const string& aktivFelhasznaloNev, const string& aktivVezetekNev,
+                   const string& aktivKeresztNev, FormaiEllenorzo* formaiEllenorzo);
         virtual ~Tulajdonos();
 
         virtual void menuMutat();
-        virtual bool parancsFeldolgoz(int parancs, Adatok& adatok);
+        virtual bool parancsFeldolgoz(int parancs);
     private:
         // USE CASES
-        void cegAdatokLekerese(CegAdatok& adatok); // B1
-        void napiStatisztikaLekerese(FuvarLista& lista); // B2
-        void hatekonysagiStatisztikaLekerese(FuvarLista& lista); // B3
+        void cegAdatokLekerese(); // B1
+        void napiStatisztikaLekerese(); // B2
+        void hatekonysagiStatisztikaLekerese(); // B3
 };
 
 #endif // TULAJDONOS_H

@@ -1,7 +1,8 @@
 #include "Kamionos.h"
 
-Kamionos::Kamionos(const string& aktivFelhasznaloNev, const string& aktivVezetekNev, const string& aktivKeresztNev) :
-    AktivFelhasznalo(aktivFelhasznaloNev, aktivVezetekNev, aktivKeresztNev)
+Kamionos::Kamionos(const string& aktivFelhasznaloNev, const string& aktivVezetekNev,
+                   const string& aktivKeresztNev, FormaiEllenorzo* formaiEllenorzo) :
+    AktivFelhasznalo(aktivFelhasznaloNev, aktivVezetekNev, aktivKeresztNev, formaiEllenorzo)
 {}
 
 Kamionos::~Kamionos()
@@ -16,21 +17,21 @@ void Kamionos::menuMutat()
     cout << "> 5 : kilepes" << endl;
 }
 
-bool Kamionos::parancsFeldolgoz(int parancs, Adatok& adatok)
+bool Kamionos::parancsFeldolgoz(int parancs)
 {
     bool kilepes = false;
     switch (parancs) {
     case 1:
-        fuvarokCelzottListazasa(adatok.getFuvarLista());
+        fuvarokCelzottListazasa();
         break;
     case 2:
-        fuvarMegtekintese(adatok.getFuvarLista());
+        fuvarMegtekintese();
         break;
     case 3:
-        fuvarAllapotModositasa(adatok.getFuvarLista(), adatok.getFormaiEllenorzo());
+        fuvarAllapotModositasa();
         break;
     case 4:
-        fuvarMegjegyzesekModositasa(adatok.getFuvarLista());
+        fuvarMegjegyzesekModositasa();
         break;
     case 5:
         kilepes = true;
@@ -39,43 +40,43 @@ bool Kamionos::parancsFeldolgoz(int parancs, Adatok& adatok)
     return kilepes;
 }
 
-void Kamionos::fuvarokCelzottListazasa(FuvarLista& lista)
+void Kamionos::fuvarokCelzottListazasa()
 {
-    lista.kiirLeszurve(aktivFelhasznaloNev);
+    fuvarLista->kiirLeszurve(aktivFelhasznaloNev);
 }
 
-void Kamionos::fuvarMegtekintese(FuvarLista& lista)
+void Kamionos::fuvarMegtekintese()
 {
     int id;
 
     // INCLUDE
-    fuvarAzonositokCelzottListazasa(lista);
+    fuvarAzonositokCelzottListazasa();
 
     cin.ignore();
     cout << "Adja meg a fuvar azonositot: ";
     id = utils::getint();
 
-    if (lista.fuvarLetezik(id)) {
-        lista.getFuvarIdAlapjan(id)->kiir();
+    if (fuvarLista->fuvarLetezik(id)) {
+        fuvarLista->getFuvarIdAlapjan(id)->kiir();
     } else {
         cout << "Nem letezik ilyen fuvar azonosito!" << endl;
     }
 }
 
-void Kamionos::fuvarAllapotModositasa(FuvarLista& lista, FormaiEllenorzo& formaiEllenorzo)
+void Kamionos::fuvarAllapotModositasa()
 {
     int allapot;
     string atvevesIdeje;
     string atvevoTeljesNeve;
 
-    fuvarAzonositokCelzottListazasa(lista);
+    fuvarAzonositokCelzottListazasa();
 
     cin.ignore();
     cout << "Adja meg a fuvar azonositot: ";
     int id;
     id = utils::getint();
 
-    if (lista.fuvarLetezik(id)) {
+    if (fuvarLista->fuvarLetezik(id)) {
         cout << "[Ha az adatot nem adja meg, az nem kerul modositasra!!!]" << endl;
         cout << "Adja meg az uj allapotot (0=feldolgozas alatt, 1=sikeres, 2=sikertelen): ";
         allapot = utils::getint();
@@ -84,8 +85,8 @@ void Kamionos::fuvarAllapotModositasa(FuvarLista& lista, FormaiEllenorzo& formai
         cout << "Adja meg az uj atvevo teljes nevet: ";
         getline(cin, atvevoTeljesNeve);
 
-        if (formaiEllenorzo.fuvarAllapotModositasa(atvevesIdeje, allapot)) {
-            lista.fuvarModositasa(id, allapot, atvevesIdeje, atvevoTeljesNeve);
+        if (formaiEllenorzo->fuvarAllapotModositasa(atvevesIdeje, allapot)) {
+            fuvarLista->fuvarModositasa(id, allapot, atvevesIdeje, atvevoTeljesNeve);
         } else {
             cout << "A megadott datum helytelen formatumu!" << endl;
         }
@@ -95,28 +96,28 @@ void Kamionos::fuvarAllapotModositasa(FuvarLista& lista, FormaiEllenorzo& formai
     }
 }
 
-void Kamionos::fuvarMegjegyzesekModositasa(FuvarLista& lista)
+void Kamionos::fuvarMegjegyzesekModositasa()
 {
     int id;
     string megjegyzesek;
 
-    fuvarAzonositokCelzottListazasa(lista);
+    fuvarAzonositokCelzottListazasa();
 
     cin.ignore();
     cout << "Adja meg a fuvar azonositot: ";
     id = utils::getint();
 
-    if (lista.fuvarLetezik(id)) {
+    if (fuvarLista->fuvarLetezik(id)) {
         cout << "[Ha az adatot nem adja meg, az nem kerul modositasra!!!]" << endl;
         cout << "Adja meg az uj megjegyzest: ";
         getline(cin, megjegyzesek);
-        lista.fuvarModositasa(id, megjegyzesek);
+        fuvarLista->fuvarModositasa(id, megjegyzesek);
     } else {
         cout << "Nem letezik ilyen fuvar azonosito!" << endl;
     }
 }
 
-void Kamionos::fuvarAzonositokCelzottListazasa(FuvarLista& lista)
+void Kamionos::fuvarAzonositokCelzottListazasa()
 {
-    lista.kiirAzonositokLeszurve(aktivFelhasznaloNev);
+    fuvarLista->kiirAzonositokLeszurve(aktivFelhasznaloNev);
 }

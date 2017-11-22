@@ -21,7 +21,7 @@ bool Menu::mutat(Adatok& adatok)
         cout << "Bejelentkezve mint: " << felhasznalo->getAktivFelhasznaloNev() << endl;
         felhasznalo->menuMutat();
         cin >> parancs;
-        kilepes = felhasznalo->parancsFeldolgoz(parancs, adatok);
+        kilepes = felhasznalo->parancsFeldolgoz(parancs);
     } else {
         cout << "> 1 : bejelentkezes" << endl;
         cout << "> 2 : kilepes" << endl;
@@ -54,22 +54,38 @@ bool Menu::bejelentkezes(const string& felhasznaloNev, const string& jelszo, Ada
         case 0:
             felhasznalo = new Tulajdonos(adat->getFelhasznaloNev(),
                                          adat->getVezetekNev(),
-                                         adat->getKeresztNev());
+                                         adat->getKeresztNev(),
+                                         &adatok.getFormaiEllenorzo());
+
+            felhasznalo->setCegAdatok(&adatok.getCegAdatok());
+            felhasznalo->setFuvarLista(&adatok.getFuvarLista());
             break;
         case 1:
             felhasznalo = new Admin(adat->getFelhasznaloNev(),
                                     adat->getVezetekNev(),
-                                    adat->getKeresztNev());
+                                    adat->getKeresztNev(),
+                                    &adatok.getFormaiEllenorzo());
+
+            felhasznalo->setCegLista(&adatok.getCegLista());
+            felhasznalo->setFelhasznaloLista(&adatok.getFelhasznaloLista());
             break;
         case 2:
             felhasznalo = new Titkar(adat->getFelhasznaloNev(),
                                      adat->getVezetekNev(),
-                                     adat->getKeresztNev());
+                                     adat->getKeresztNev(),
+                                     &adatok.getFormaiEllenorzo());
+
+            felhasznalo->setCegLista(&adatok.getCegLista());
+            felhasznalo->setFuvarLista(&adatok.getFuvarLista());
+            felhasznalo->setFelhasznaloLista(&adatok.getFelhasznaloLista());
             break;
         case 3:
             felhasznalo = new Kamionos(adat->getFelhasznaloNev(),
                                        adat->getVezetekNev(),
-                                       adat->getKeresztNev());
+                                       adat->getKeresztNev(),
+                                       &adatok.getFormaiEllenorzo());
+
+            felhasznalo->setFuvarLista(&adatok.getFuvarLista());
             break;
         }
         return true;
